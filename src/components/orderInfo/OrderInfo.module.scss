@@ -1,0 +1,116 @@
+.container {
+  margin: 10px 0px 10px 22px;
+  white-space: nowrap;
+  .firstBlock {
+    border-bottom: 2px solid #f7f7f7;
+    padding-bottom: 10px;
+    min-width: 825px;
+    .title {
+      font-style: normal;
+      font-weight: bold;
+      font-size: 16px;
+      line-height: 20px;
+      color: #000000;
+      margin-bottom: 10px;
+    }
+    .deliveryInfo {
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 15px;
+      div {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 10px;
+        text-align: center;
+        font-feature-settings: "liga" off;
+        color: #000000;
+        margin-right: 20px;
+      }
+    }
+    .productInfo {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      div {
+        margin-right: 20px;
+      }
+      .productPic {
+        width: 60px;
+        height: 69px;
+        margin-right: 20px;
+      }
+      .productName {
+        display: flex;
+        flex-direction: column;
+        .firstLine {
+          display: flex;
+          flex-direction: row;
+          margin-bottom: 10px;
+          .name {
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 150%;
+            font-feature-settings: "liga" off;
+            color: #000000;
+            white-space: nowrap;
+          }
+          .quantity {
+            font-style: normal;
+            font-weight: 400 !important;
+            font-size: 16px;
+            line-height: 150%;
+            font-feature-settings: "liga" off;
+            color: #000000;
+            white-space: nowrap;
+          }
+          .price {
+            font-style: normal;
+            font-weight: bold;
+            font-size: 16px;
+            line-height: 150%;
+            font-feature-settings: "liga" off;
+            color: #000000;
+            white-space: nowrap;
+          }
+        }
+        .vendorCode {
+          font-style: normal;
+          font-weight: bold;
+          font-size: 16px;
+          line-height: 150%;
+          color: #c0c0c0;
+        }
+      }
+    }
+  }
+  .secondBlock {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    div {
+      .header {
+        font-weight: bold;
+      }
+      div {
+        margin-bottom: 5px;
+      }
+    }
+    .delivery {
+      margin-right: 80px;
+    }
+    .payMethod {
+      margin-right: 54px;
+    }
+    .priceSum {
+      .sum {
+        color: #f5ab92;
+        font-weight: bold;
+        margin-right: 54px;
+      }
+    }
+    .deliveryStatus {
+    }
+  }
+}

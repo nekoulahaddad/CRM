@@ -1,0 +1,10 @@
+@font-face {
+  font-family: "NekoulaFont";
+  src: local("MyFont"), url(./assets/Montserrat-Regular.woff) format("woff");
+}
+html {
+  font-family: NekoulaFont;
+}
+body {
+  margin: 0;
+}

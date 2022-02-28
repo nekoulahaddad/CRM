@@ -1,0 +1,32 @@
+.tableConainer {
+  width: 100%;
+  table-layout: fixed;
+  overflow-wrap: break-word;
+  overflow-x: scroll;
+}
+table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  .orderInfoBlock {
+    border: 1px solid #c0c0c0;
+  }
+  tr {
+    position: relative;
+    th,
+    td {
+      border: 1px solid #c0c0c0;
+      border-collapse: collapse;
+      height: 48px;
+      text-align: center;
+      max-width: 100px;
+    }
+  }
+  tr:nth-child(even) {
+    background: #f7f7f7;
+  }
+}
+.extra {
+  border: none;
+  text-align: start;
+}

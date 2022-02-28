@@ -1,0 +1,35 @@
+.wrapper {
+  margin-top: 20px;
+  margin-bottom: 100px;
+  display: flex;
+  justify-content: center;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  div {
+    cursor: pointer;
+    background: #ffffff;
+    border: 2px solid #dfe3e8;
+    box-sizing: border-box;
+    border-radius: 8px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 28px;
+    text-align: center;
+    color: #212b36;
+    height: 32px;
+    width: 32px;
+  }
+  .active {
+    color: #78c2dd;
+    border: 2px solid #78c2dd;
+  }
+  .disabled {
+    background: #919eab;
+    border: 2px solid #919eab;
+    opacity: 0.5;
+  }
+}

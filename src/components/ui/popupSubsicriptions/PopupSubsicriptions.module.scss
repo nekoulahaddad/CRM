@@ -1,0 +1,59 @@
+.wrapper {
+  position: absolute;
+  right: 2px;
+  top: -10px;
+  z-index: 2;
+  padding: 33px 33px 10px 20px;
+  line-height: 150%;
+  font-feature-settings: "liga" off;
+  font-style: normal;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  width: 512px;
+  height: 434px;
+  .container {
+    display: flex;
+    flex-direction: row;
+    .left {
+      flex: 1;
+      div {
+        margin-bottom: 10px;
+        font-size: 14px;
+        color: #000000;
+      }
+    }
+    .right {
+      flex: 1;
+      div {
+        margin-bottom: 10px;
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.3);
+      }
+    }
+  }
+  .title {
+    font-size: 16px;
+    color: #78c2dd;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+  .popupTable {
+    tr {
+      &:first-child,
+      &:nth-child(2) {
+        color: #000000 !important;
+      }
+      &:nth-child(even) {
+        background: #ffffff;
+      }
+      td {
+        font-weight: normal;
+      }
+    }
+    color: #c0c0c0;
+  }
+}

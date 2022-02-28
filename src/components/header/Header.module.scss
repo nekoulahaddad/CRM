@@ -1,0 +1,17 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 15px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  .icon {
+    margin-right: 19px;
+    background-color: #b3de75;
+    padding: 8px 10px;
+    border-radius: 50%;
+  }
+  .title {
+    margin-top: auto;
+    margin-bottom: auto;
+    font-weight: bold;
+  }
+}

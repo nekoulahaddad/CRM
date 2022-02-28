@@ -1,0 +1,36 @@
+$small: 300px;
+$medium: 1590px;
+.wrapper {
+  display: flex;
+  flex-direction: row;
+}
+.container {
+  margin: 43px 143px 0px 73px;
+  width: 100%;
+  @media screen and (max-width: $medium) {
+    margin: 43px 20px 0px 20px;
+  }
+}
+.controlSection {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+}
+.downloadLink {
+  text-decoration: none;
+}
+.controlBotton {
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+  color: white;
+  border: 8px double white;
+  background: #78c2dd;
+  border-radius: 6px;
+  outline: 0;
+  width: 205px;
+  height: 51px;
+  line-height: 35px;
+  text-align: center;
+  margin-left: 12px;
+}
