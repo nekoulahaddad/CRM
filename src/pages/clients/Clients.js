@@ -1,6 +1,7 @@
 import React from "react";
 import { ReactComponent as People } from "assets/People.svg";
 import CrmTemplate from "components/crmTemplate/CrmTemplate";
+
 export default function Clients() {
   const headers = [
     { title: "ID", dataIndex: "id" },

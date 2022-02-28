@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import styles from "./Table.module.scss";
+import { Link } from "react-router-dom";
+
 export default function Table({ componentProps }) {
   const [open, setOpen] = useState(false);
-  const { headers, data, PopupSubsicriptions, OrderInfo } = componentProps;
+  const { headers, data, props, PopupSubsicriptions, OrderInfo } =
+    componentProps;
   console.log(headers);
   return (
     <div className={styles.tableContainer}>
@@ -15,12 +18,28 @@ export default function Table({ componentProps }) {
         {data &&
           data.map((record, i) => (
             <React.Fragment>
-              <tr onClick={() => setOpen(!open)} key={i}>
-                {headers.map((header, i) => (
-                  <td key={i}>{record[header.dataIndex]}</td>
-                ))}
-                {PopupSubsicriptions && i == 2 ? PopupSubsicriptions : null}
-              </tr>
+              {props && props.title === "Клиенты" ? (
+                <tr onClick={() => setOpen(!open)} key={i}>
+                  {headers.map((header, i) => (
+                    <td key={i}>
+                      <Link
+                        className={styles.tableLink}
+                        to={"/clients/profile/123"}
+                      >
+                        {record[header.dataIndex]}
+                      </Link>
+                    </td>
+                  ))}
+                  {PopupSubsicriptions && i == 2 ? PopupSubsicriptions : null}
+                </tr>
+              ) : (
+                <tr onClick={() => setOpen(!open)} key={i}>
+                  {headers.map((header, i) => (
+                    <td key={i}>{record[header.dataIndex]}</td>
+                  ))}
+                  {PopupSubsicriptions && i == 2 ? PopupSubsicriptions : null}
+                </tr>
+              )}
               {OrderInfo && open ? (
                 <tr className={styles.orderInfoBlock}>
                   <td className={styles.extra}>{OrderInfo}</td>

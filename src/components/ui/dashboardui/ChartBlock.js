@@ -21,7 +21,7 @@ export default function ChartBlock() {
       return final;
     },
     colors: ["#00A1DF", "#FA9812", "#78C2DD", "#F13F17"],
-    borderWidth: 10,
+    borderWidth: 5,
   };
 
   return (
@@ -29,7 +29,7 @@ export default function ChartBlock() {
       <div className={styles.chartContainer}>
         <div className={styles.chart}>
           <ChartSvg chartData={chartData} />
-          <div className={styles.centerChart}>2114</div>
+          <div className={styles.centerChart}>2134</div>
         </div>
         <div className={styles.chartLabels}>
           <div className={styles.title}>Кол-во подписок</div>

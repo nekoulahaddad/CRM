@@ -20,6 +20,10 @@ table {
       height: 48px;
       text-align: center;
       max-width: 100px;
+      .tableLink {
+        text-decoration: none;
+        color: black;
+      }
     }
   }
   tr:nth-child(even) {
