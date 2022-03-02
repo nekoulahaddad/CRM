@@ -3,13 +3,26 @@
   flex-direction: row;
   padding-bottom: 15px;
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
-  .icon {
-    margin-right: 19px;
+  .iconSmall {
+    svg {
+      padding: 7px 11px;
+      margin-top: 2px;
+    }
+    margin-right: 10px;
     background-color: #b3de75;
-    padding: 8px 10px;
+    border-radius: 50%;
+  }
+  .icon {
+    svg {
+      padding: 4px 9px;
+      margin-top: 2px;
+    }
+    margin-right: 10px;
+    background-color: #b3de75;
     border-radius: 50%;
   }
   .title {
+    font-size: 18px;
     margin-top: auto;
     margin-bottom: auto;
     font-weight: bold;

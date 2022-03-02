@@ -1,9 +1,12 @@
 @font-face {
-  font-family: "NekoulaFont";
-  src: local("MyFont"), url(./assets/Montserrat-Regular.woff) format("woff");
+  font-family: "MontserratFont";
+  src: local("MontserratFont"),
+    url(./assets/Montserrat-Regular.woff) format("woff");
+  font-family: "MontserratBold";
+  src: local("MyFontBold"), url(./assets/Montserrat-Bold.woff) format("woff");
 }
 html {
-  font-family: NekoulaFont;
+  font-family: MontserratBold;
 }
 body {
   margin: 0;

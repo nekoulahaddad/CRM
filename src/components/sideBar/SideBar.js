@@ -39,16 +39,29 @@ export default function SideBar() {
       <div className={styles.navLinksWrapper}>
         {navLinks.map((navlink, i) => (
           <div key={i} className={styles.NavLinkContainer}>
-            <NavLink
-              to={navlink.url}
-              className={({ isActive }) =>
-                isActive
-                  ? `${styles.active} ${styles.navlink}`
-                  : `${styles.navlink}`
-              }
-            >
-              {navlink.icon}
-            </NavLink>
+            {navlink.url === "/finances" || navlink.url === "/dashboard" ? (
+              <NavLink
+                to={navlink.url}
+                className={({ isActive }) =>
+                  isActive
+                    ? `${styles.active} ${styles.navlinkSmall}`
+                    : `${styles.navlinkSmall}`
+                }
+              >
+                {navlink.icon}
+              </NavLink>
+            ) : (
+              <NavLink
+                to={navlink.url}
+                className={({ isActive }) =>
+                  isActive
+                    ? `${styles.active} ${styles.navlink}`
+                    : `${styles.navlink}`
+                }
+              >
+                {navlink.icon}
+              </NavLink>
+            )}
           </div>
         ))}
       </div>

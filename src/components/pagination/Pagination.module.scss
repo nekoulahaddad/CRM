@@ -1,4 +1,11 @@
+@font-face {
+  font-family: "MontserratFont";
+  src: local("MontserratFont"),
+    url(../../assets/Montserrat-Regular.woff) format("woff");
+}
+
 .wrapper {
+  font-family: MontserratFont;
   margin-top: 20px;
   margin-bottom: 100px;
   display: flex;

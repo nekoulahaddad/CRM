@@ -1,3 +1,9 @@
+@font-face {
+  font-family: "MontserratFont";
+  src: local("MontserratFont"),
+    url(../../assets/Montserrat-Regular.woff) format("woff");
+}
+
 .tableConainer {
   width: 100%;
   table-layout: fixed;
@@ -13,12 +19,19 @@ table {
   }
   tr {
     position: relative;
+    td {
+      font-family: MontserratFont;
+      color: #000000;
+      font-feature-settings: "liga" off;
+    }
     th,
     td {
+      font-size: 14px;
       border: 1px solid #c0c0c0;
       border-collapse: collapse;
       height: 48px;
       text-align: center;
+      line-height: 150%;
       max-width: 100px;
       .tableLink {
         text-decoration: none;

@@ -27,9 +27,8 @@ export default function ChartBlock() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.chartContainer}>
-        <div className={styles.chart}>
-          <ChartSvg chartData={chartData} />
-          <div className={styles.centerChart}>2134</div>
+        <div>
+          <ChartSvg />
         </div>
         <div className={styles.chartLabels}>
           <div className={styles.title}>Кол-во подписок</div>

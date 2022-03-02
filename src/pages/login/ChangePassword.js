@@ -27,7 +27,7 @@ export default function ChangePassword() {
             </div>
             <div
               onClick={() => setPasswordSent(true)}
-              className={styles.loginButton}
+              className={styles.sendPasswordButton}
             >
               Отправить{" "}
             </div>

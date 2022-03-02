@@ -7,11 +7,11 @@ $primary-color: #333;
   justify-content: center;
   align-items: center;
   .container {
-    height: 397px;
+    height: 369px;
     padding: 14px 21px;
     display: flex;
     flex-direction: column;
-    width: 287px;
+    width: 245px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
     .logo {
       display: flex;
@@ -29,7 +29,8 @@ $primary-color: #333;
       justify-content: center;
     }
     .loginInputContainer {
-      margin-bottom: 18px;
+      padding-left: 5.8px;
+      margin-bottom: 16px;
       box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.18);
       width: 100%;
       height: 33px;
@@ -39,13 +40,13 @@ $primary-color: #333;
         margin-top: 8px !important;
       }
       .inputIcon {
-        margin-top: 6px;
-        margin-right: 14px;
+        margin-top: 7px;
       }
       .loginInput {
         all: unset;
       }
       .loginInput::placeholder {
+        padding-left: 7.8px;
         font-style: normal;
         font-weight: bold;
         font-size: 15px;
@@ -53,9 +54,27 @@ $primary-color: #333;
         color: rgba(0, 0, 0, 0.3);
       }
     }
-    .loginButton {
+
+    .sendPasswordButton {
+      text-decoration: none;
       cursor: pointer;
-      margin: 17px 0px 12px 0px;
+      margin: 6px 0px 12px 0px;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      height: 33px;
+      background: #78c2dd;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 15px;
+      line-height: 18px;
+      line-height: 33px;
+      color: #ffffff;
+    }
+    .loginButton {
+      text-decoration: none;
+      cursor: pointer;
+      margin: 19px 0px 12px 0px;
       display: flex;
       justify-content: center;
       width: 100%;
@@ -70,11 +89,12 @@ $primary-color: #333;
     }
     .passwordSentTitle {
       margin-top: 90px !important;
-      margin-bottom: 38px !important;
+      margin-bottom: 20px !important;
       text-align: center;
       font-feature-settings: "liga" off;
     }
     .forgetPasswordButton {
+      text-decoration: none;
       display: flex;
       justify-content: center;
       color: rgba(0, 0, 0, 0.3);

@@ -16,7 +16,7 @@ export default function Clients() {
   const data = [
     {
       id: "564545645641",
-      name: "nekoula",
+      name: "Конcтантин Константинов",
       phone: "5456564",
       email: "mail.ru",
       date: "445454",

@@ -5,7 +5,7 @@ $medium: 1590px;
   flex-direction: row;
 }
 .container {
-  margin: 43px 143px 0px 73px;
+  margin: 43px 123px 0px 73px;
   width: 100%;
   @media screen and (max-width: $medium) {
     margin: 43px 20px 0px 20px;
@@ -28,9 +28,9 @@ $medium: 1590px;
   background: #78c2dd;
   border-radius: 6px;
   outline: 0;
-  width: 205px;
+  width: 221px;
   height: 51px;
   line-height: 35px;
   text-align: center;
-  margin-left: 12px;
+  margin-left: 16px;
 }
