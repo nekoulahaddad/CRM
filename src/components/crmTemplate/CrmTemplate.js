@@ -14,6 +14,35 @@ export default function CrmTemplate({ componentProps }) {
   const { headers, data, props, placeholder, PopupSubsicriptions } =
     componentProps;
 
+  const printTarget = () => {
+    let divToPrint = document.getElementById("tableId");
+    let htmlToPrint =
+      '<style type="text/css">' +
+      "table {" +
+      "font-family: arial, sans-serif;" +
+      "border-collapse: collapse;" +
+      "width: 95%;" +
+      "margin-left: 20px" +
+      "}" +
+      "th, td {" +
+      "border:1px solid #000;" +
+      "padding: 8px;" +
+      "}" +
+      "tr:nth-child(even) {" +
+      "background-color: #dddddd;" +
+      "}" +
+      "</style>";
+    console.log(htmlToPrint);
+    htmlToPrint += divToPrint.outerHTML;
+    let windowToPrint = window.open("");
+    windowToPrint.document.write(htmlToPrint);
+    windowToPrint.print();
+    // setTimeout(() => {
+    //   // Without the timeout, the window seems to close immediately.
+    //   windowToPrint.close();
+    // }, 250);
+  };
+
   const ids = ["1"];
   return (
     <div className={styles.wrapper}>
@@ -36,7 +65,7 @@ export default function CrmTemplate({ componentProps }) {
             </ExportSheet>
           </div>
           <div
-            onClick={() => print(ids)}
+            onClick={() => printTarget()}
             className={styles.downloadLink}
             data={data}
             headers={headers}

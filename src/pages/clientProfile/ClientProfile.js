@@ -21,7 +21,6 @@ export default function ClientProfile() {
     { title: "Дата регистрации", dataIndex: "date" },
     { title: "Последний вход", dataIndex: "lastLoginin" },
     { title: "Статус", dataIndex: "status" },
-    { title: "Опции", dataIndex: "options" },
   ];
   const data = [
     {
@@ -32,7 +31,6 @@ export default function ClientProfile() {
       date: "445454",
       lastLoginin: "dsad",
       status: "dsadsad",
-      options: "...",
     },
     {
       id: "564545645643",
@@ -42,7 +40,6 @@ export default function ClientProfile() {
       date: "445454",
       lastLoginin: "dsad",
       status: "dsadsad",
-      options: "...",
     },
     {
       id: "564545645644",
@@ -52,14 +49,13 @@ export default function ClientProfile() {
       date: "445454",
       lastLoginin: "dsad",
       status: "dsadsad",
-      options: "...",
     },
   ];
-  const componentProps = { headers, data, OrderInfo: <OrderInfo /> };
   const props = {
     icon: <People />,
     title: "Клиенты",
   };
+  const componentProps = { headers, data, OrderInfo: <OrderInfo /> };
 
   return (
     <div className={styles.wrapper}>

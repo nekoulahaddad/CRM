@@ -46,4 +46,27 @@ table {
 .extra {
   border: none;
   text-align: start;
+  background-color: #fff;
+}
+
+.ThreeDots {
+  position: relative;
+  cursor: pointer;
+}
+.PopupOptions {
+  position: absolute;
+  left: calc(50% - 38px);
+  transform: translateX(-50%);
+  width: 202px;
+  top: 50px;
+  z-index: 6;
+}
+.cover {
+  position: absolute;
+  height: 70%;
+  width: 90%;
+}
+
+.curser {
+  cursor: pointer;
 }

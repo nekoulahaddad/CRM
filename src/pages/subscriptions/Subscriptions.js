@@ -11,38 +11,34 @@ export default function Subscriptions() {
     { title: "Дата регистрации", dataIndex: "date" },
     { title: "Последний вход", dataIndex: "lastLoginin" },
     { title: "Статус", dataIndex: "status" },
-    { title: "Опции", dataIndex: "options" },
   ];
   const data = [
     {
-      id: "56454564564",
-      name: "nekoula",
+      id: "564545645641",
+      name: "Конcтантин Константинов",
       phone: "5456564",
       email: "mail.ru",
       date: "445454",
       lastLoginin: "dsad",
       status: "dsadsad",
-      options: "...",
     },
     {
-      id: "56454564564",
+      id: "564545645643",
       name: "nekoula",
       phone: "5456564",
       email: "mail.ru",
       date: "445454",
       lastLoginin: "dsad",
       status: "dsadsad",
-      options: "...",
     },
     {
-      id: "56454564564",
+      id: "564545645644",
       name: "nekoula",
       phone: "5456564",
       email: "mail.ru",
       date: "445454",
       lastLoginin: "dsad",
       status: "dsadsad",
-      options: "...",
     },
   ];
   const props = {

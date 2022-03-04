@@ -1,0 +1,31 @@
+.container {
+  background: white;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  width: 202px;
+  z-index: 7;
+  margin-left: 50px;
+  padding: 13px 0px 13px 16px;
+  text-align: start;
+  div {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  &::after {
+    z-index: 3;
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    margin-left: 0;
+    top: 0;
+    right: calc(25% - 15px);
+    box-sizing: border-box;
+    border: 8px solid #fff;
+    border-color: transparent transparent #fff #fff;
+    transform-origin: 0 0;
+    transform: rotate(135deg);
+  }
+}

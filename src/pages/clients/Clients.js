@@ -11,7 +11,6 @@ export default function Clients() {
     { title: "Дата регистрации", dataIndex: "date" },
     { title: "Последний вход", dataIndex: "lastLoginin" },
     { title: "Статус", dataIndex: "status" },
-    { title: "Опции", dataIndex: "options" },
   ];
   const data = [
     {
@@ -22,7 +21,6 @@ export default function Clients() {
       date: "445454",
       lastLoginin: "dsad",
       status: "dsadsad",
-      options: "...",
     },
     {
       id: "564545645643",
@@ -32,7 +30,6 @@ export default function Clients() {
       date: "445454",
       lastLoginin: "dsad",
       status: "dsadsad",
-      options: "...",
     },
     {
       id: "564545645644",
@@ -42,7 +39,6 @@ export default function Clients() {
       date: "445454",
       lastLoginin: "dsad",
       status: "dsadsad",
-      options: "...",
     },
   ];
   const props = {
