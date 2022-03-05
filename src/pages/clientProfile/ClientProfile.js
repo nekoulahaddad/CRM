@@ -14,41 +14,45 @@ export default function ClientProfile() {
   let navigate = useNavigate();
 
   const headers = [
-    { title: "ID", dataIndex: "id" },
-    { title: "Имя и Фамилия", dataIndex: "name" },
-    { title: "Номер телефона", dataIndex: "phone" },
-    { title: "Почта", dataIndex: "email" },
-    { title: "Дата регистрации", dataIndex: "date" },
-    { title: "Последний вход", dataIndex: "lastLoginin" },
+    { title: "№ Заказа", dataIndex: "orderNo" },
+    { title: "Дата и время", dataIndex: "date" },
     { title: "Статус", dataIndex: "status" },
+    { title: "Магазин", dataIndex: "shop" },
+    { title: "Сумма", dataIndex: "price" },
+    { title: "Кол–во товаров", dataIndex: "quantity" },
+    { title: "Адрес доставки", dataIndex: "address" },
+    { title: "Доставка", dataIndex: "deliveryTime" },
   ];
   const data = [
     {
-      id: "564545645641",
-      name: "nekoula",
-      phone: "5456564",
-      email: "mail.ru",
-      date: "445454",
-      lastLoginin: "dsad",
-      status: "dsadsad",
+      orderNo: "564545645641",
+      date: "Конcтантин Константинов",
+      status: "5456564",
+      shop: "mail.ru",
+      price: "445454",
+      quantity: "445454",
+      address: "dsadsad",
+      deliveryTime: "dsadsad",
     },
     {
-      id: "564545645643",
-      name: "nekoula",
-      phone: "5456564",
-      email: "mail.ru",
-      date: "445454",
-      lastLoginin: "dsad",
-      status: "dsadsad",
+      orderNo: "564545645641",
+      date: "Конcтантин Константинов",
+      status: "5456564",
+      shop: "mail.ru",
+      price: "445454",
+      quantity: "445454",
+      address: "dsadsad",
+      deliveryTime: "dsadsad",
     },
     {
-      id: "564545645644",
-      name: "nekoula",
-      phone: "5456564",
-      email: "mail.ru",
-      date: "445454",
-      lastLoginin: "dsad",
-      status: "dsadsad",
+      orderNo: "564545645641",
+      date: "Конcтантин Константинов",
+      status: "5456564",
+      shop: "mail.ru",
+      price: "445454",
+      quantity: "445454",
+      address: "dsadsad",
+      deliveryTime: "dsadsad",
     },
   ];
   const props = {
@@ -67,7 +71,6 @@ export default function ClientProfile() {
         </div>
         <ClientForm />
         <div className={styles.status}>
-          <div className={styles.title}>Статус:</div>
           <div>
             <SwitchBotton />
           </div>
@@ -75,6 +78,7 @@ export default function ClientProfile() {
             При неактивном статусе клиент будет заблокирован*
           </div>
         </div>
+        <div className={styles.title}>Заказы:</div>
         <Table componentProps={componentProps} />
         <Pagination />
       </div>

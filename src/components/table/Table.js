@@ -3,9 +3,11 @@ import styles from "./Table.module.scss";
 import { Link } from "react-router-dom";
 import { ReactComponent as ThreeDots } from "assets/ThreeDots.svg";
 import PopupOptions from "components/ui/popupOptions/PopupOptions";
+import SwitchBotton from "components/ui/bottons/SwitchBotton";
 export default function Table({ componentProps }) {
   const [openOrder, setOpenOrder] = useState("");
   const [openedOptions, setOpenedOptions] = useState("");
+  const [checkedRows, setCheckedRows] = useState([]);
   const { headers, data, props, PopupSubsicriptions, OrderInfo } =
     componentProps;
   console.log(headers);
@@ -18,6 +20,9 @@ export default function Table({ componentProps }) {
     console.log(id);
     openOrder !== "" ? setOpenOrder("") : setOpenOrder(id);
   };
+  const handleCheckBoxOne = (checked, id) => {
+    setCheckedRows();
+  };
   return (
     <div
       onClick={() => openedOptions && setOpenedOptions("")}
@@ -26,10 +31,23 @@ export default function Table({ componentProps }) {
       <div onClick={() => setOpenedOptions("")} className={styles.cover}></div>
       <table id="tableId">
         <tr>
+          <th className={styles.boxInputContainer}>
+            <input className={styles.boxInput} type="checkbox" />
+          </th>
           {headers.map((header, i) => (
-            <th key={header.title}>{header.title}</th>
+            <th style={{ width: header.width }} key={header.title}>
+              {header.title}
+            </th>
           ))}
-          {props && props.title !== "Финансы" ? <th>Опции</th> : null}
+          {props && props.title !== "Финансы" ? (
+            <th
+              style={
+                props && props.title === "Подписки" ? { width: "236px" } : {}
+              }
+            >
+              Опции
+            </th>
+          ) : null}
         </tr>
         {data &&
           data.map((record, i) => (
@@ -39,8 +57,26 @@ export default function Table({ componentProps }) {
                 onClick={() => handleOrderPopUp(i)}
                 key={i}
               >
+                <td className={styles.boxInputContainer}>
+                  <label>
+                    <input
+                      onChange={(e) => handleCheckBoxOne(e.target.checked, i)}
+                      className={styles.boxInput}
+                      type="checkbox"
+                    />
+                  </label>
+                </td>
                 {headers.map((header, i) => (
-                  <td key={i}>{record[header.dataIndex]}</td>
+                  <td
+                    className={styles.tableCell}
+                    title={record[header.dataIndex]}
+                    key={i}
+                  >
+                    {typeof record[header.dataIndex] === "boolean" ? (
+                      <SwitchBotton />
+                    ) : null}
+                    {record[header.dataIndex]}
+                  </td>
                 ))}
                 {props && props.title !== "Финансы" ? (
                   <td
@@ -56,7 +92,7 @@ export default function Table({ componentProps }) {
                         <PopupOptions>
                           <Link
                             className={styles.tableLink}
-                            to={"/clients/profile/123"}
+                            to={"/clients/profile/456"}
                           >
                             Перейти в профиль
                           </Link>

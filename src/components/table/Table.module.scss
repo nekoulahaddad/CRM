@@ -11,7 +11,8 @@
   overflow-x: scroll;
 }
 table {
-  width: 100%;
+  table-layout: fixed;
+  width: 1635px;
   margin-top: 20px;
   border-collapse: collapse;
   .orderInfoBlock {
@@ -24,6 +25,11 @@ table {
       color: #000000;
       font-feature-settings: "liga" off;
     }
+    .tableCell {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
     th,
     td {
       font-size: 14px;
@@ -32,7 +38,6 @@ table {
       height: 48px;
       text-align: center;
       line-height: 150%;
-      max-width: 100px;
       .tableLink {
         text-decoration: none;
         color: black;
@@ -63,10 +68,36 @@ table {
 }
 .cover {
   position: absolute;
-  height: 70%;
+  height: 400px;
   width: 90%;
 }
 
 .curser {
   cursor: pointer;
+}
+.boxInputContainer {
+  width: 52px;
+  .boxInput {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -o-appearance: none;
+    height: 24px;
+    width: 24px;
+    border: 2px solid #c0c0c0;
+    border-radius: 4px;
+    &::before {
+      font-family: "FontAwesome";
+      content: "\f00c";
+      font-size: 15px;
+      color: transparent !important;
+      display: block;
+      width: 15px;
+      height: 15px;
+      margin-left: 2px;
+      margin-top: 2px;
+    }
+    &:checked::before {
+      color: black !important;
+    }
+  }
 }
