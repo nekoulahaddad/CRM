@@ -12,21 +12,10 @@ $medium: 1590px;
   .status {
     display: flex;
     flex-direction: row;
-    margin-top: 20px;
-    .title {
-      margin-top: 3px;
-      margin-right: 15px;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 18px;
-      line-height: 150%;
-      text-align: center;
-      font-feature-settings: "liga" off;
-      color: #464646;
-    }
+    margin-top: 25px;
     .description {
-      margin-top: 8px;
-      margin-left: 10px;
+      margin-top: 4px;
+      margin-left: 16px;
       font-style: normal;
       font-weight: bold;
       font-size: 14px;
@@ -34,6 +23,17 @@ $medium: 1590px;
       font-feature-settings: "liga" off;
       color: #c0c0c0;
     }
+  }
+  .title {
+    margin-top: 20px;
+    margin-right: 15px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: start;
+    font-feature-settings: "liga" off;
+    color: #464646;
   }
 }
 .controlSection {
