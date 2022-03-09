@@ -13,6 +13,7 @@ import Finances from "pages/finances/Finances";
 import Dashboard from "pages/dashboard/Dashboard";
 import Subscriptions from "pages/subscriptions/Subscriptions";
 import ClientProfile from "pages/clientProfile/ClientProfile";
+import CategoryModeration from "pages/categoryModeration/CategoryModeration";
 function App() {
   return (
     <div className="App">
@@ -64,6 +65,14 @@ function App() {
             element={
               <RequireAuth redirectTo="/">
                 <Subscriptions />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/moderation"
+            element={
+              <RequireAuth redirectTo="/">
+                <CategoryModeration />
               </RequireAuth>
             }
           />

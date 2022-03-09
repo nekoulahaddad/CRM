@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Table.module.scss";
 import { Link } from "react-router-dom";
 import { ReactComponent as ThreeDots } from "assets/ThreeDots.svg";
@@ -10,106 +10,119 @@ export default function Table({ componentProps }) {
   const [checkedRows, setCheckedRows] = useState([]);
   const { headers, data, props, PopupSubsicriptions, OrderInfo } =
     componentProps;
-  console.log(headers);
 
   const handlePopUp = (id) => {
     openedOptions === id ? setOpenedOptions("") : setOpenedOptions(id);
   };
 
   const handleOrderPopUp = (id) => {
-    console.log(id);
     openOrder !== "" ? setOpenOrder("") : setOpenOrder(id);
   };
   const handleCheckBoxOne = (checked, id) => {
-    setCheckedRows();
+    checked
+      ? setCheckedRows((prevState) => [...prevState, id])
+      : setCheckedRows((prevState) =>
+          [...prevState].filter((item) => item !== id)
+        );
   };
+
+  const handleCheckBoxAll = (checked) => {
+    checked
+      ? setCheckedRows(data.map((record) => record.id))
+      : setCheckedRows([]);
+  };
+
+  useEffect(() => {
+    console.log(checkedRows);
+  }, [checkedRows]);
   return (
     <div
       onClick={() => openedOptions && setOpenedOptions("")}
       className={styles.tableContainer}
     >
-      <div onClick={() => setOpenedOptions("")} className={styles.cover}></div>
-      <table id="tableId">
+      <div onClick={handlePopUp} className={styles.cover}></div>
+      <table className={openOrder !== "" && styles.widthFlex} id="tableId">
         <tr>
           <th className={styles.boxInputContainer}>
-            <input className={styles.boxInput} type="checkbox" />
+            <input
+              className={styles.boxInput}
+              onClick={(e) => handleCheckBoxAll(e.target.checked)}
+              type="checkbox"
+            />
           </th>
           {headers.map((header, i) => (
             <th style={{ width: header.width }} key={header.title}>
               {header.title}
             </th>
           ))}
-          {props && props.title !== "Финансы" ? (
-            <th
-              style={
-                props && props.title === "Подписки" ? { width: "236px" } : {}
-              }
-            >
-              Опции
-            </th>
-          ) : null}
         </tr>
         {data &&
-          data.map((record, i) => (
+          data.map((record, id) => (
             <React.Fragment>
-              <tr
-                className={OrderInfo && styles.curser}
-                onClick={() => handleOrderPopUp(i)}
-                key={i}
-              >
+              <tr className={OrderInfo && styles.curser} key={id}>
                 <td className={styles.boxInputContainer}>
                   <label>
                     <input
-                      onChange={(e) => handleCheckBoxOne(e.target.checked, i)}
+                      onChange={(e) =>
+                        handleCheckBoxOne(e.target.checked, record.id)
+                      }
                       className={styles.boxInput}
                       type="checkbox"
+                      checked={checkedRows.includes(record.id)}
                     />
                   </label>
                 </td>
                 {headers.map((header, i) => (
-                  <td
-                    className={styles.tableCell}
-                    title={record[header.dataIndex]}
-                    key={i}
-                  >
-                    {typeof record[header.dataIndex] === "boolean" ? (
-                      <SwitchBotton />
-                    ) : null}
-                    {record[header.dataIndex]}
-                  </td>
+                  <React.Fragment>
+                    {header.dataIndex === "options" ||
+                    header.dataIndex === "information" ? (
+                      <td
+                        onClick={() => handlePopUp(id)}
+                        className={styles.ThreeDots}
+                        key={id}
+                      >
+                        <ThreeDots />
+                        {props &&
+                        props.title !== "Подписки" &&
+                        openedOptions === id ? (
+                          <div className={styles.PopupOptions}>
+                            <PopupOptions>
+                              <Link
+                                className={styles.tableLink}
+                                to={`/clients/profile/${record.id}`}
+                              >
+                                Перейти в профиль
+                              </Link>
+                              <div>Удалить пользователя</div>
+                            </PopupOptions>
+                          </div>
+                        ) : null}
+                      </td>
+                    ) : (
+                      <td
+                        className={styles.tableCell}
+                        title={record[header.dataIndex]}
+                        onClick={() => handleOrderPopUp(id)}
+                        key={i}
+                      >
+                        {typeof record[header.dataIndex] === "boolean" ? (
+                          <SwitchBotton />
+                        ) : null}
+                        {record[header.dataIndex]}
+                      </td>
+                    )}
+                  </React.Fragment>
                 ))}
-                {props && props.title !== "Финансы" ? (
-                  <td
-                    onClick={() => handlePopUp(i)}
-                    className={styles.ThreeDots}
-                    key={i}
-                  >
-                    <ThreeDots />
-                    {props &&
-                    props.title !== "Подписки" &&
-                    openedOptions === i ? (
-                      <div className={styles.PopupOptions}>
-                        <PopupOptions>
-                          <Link
-                            className={styles.tableLink}
-                            to={"/clients/profile/456"}
-                          >
-                            Перейти в профиль
-                          </Link>
-                          <div>Удалить пользователя</div>
-                        </PopupOptions>
-                      </div>
-                    ) : null}
-                  </td>
-                ) : null}
-                {PopupSubsicriptions && openedOptions === i
+                {PopupSubsicriptions && openedOptions === id
                   ? PopupSubsicriptions
                   : null}
               </tr>
 
-              {OrderInfo && openOrder === i ? (
+              {OrderInfo && openOrder === id ? (
                 <tr className={styles.orderInfoBlock}>
-                  <td className={styles.extra}>{OrderInfo}</td>
+                  <td colSpan="8" className={styles.extra}>
+                    {OrderInfo}
+                  </td>
                 </tr>
               ) : null}
             </React.Fragment>

@@ -5,7 +5,9 @@ export default function Header({ props }) {
   const { icon, title } = props;
   return (
     <div className={styles.wrapper}>
-      {title === "Финансы" || title === "Дашборд" ? (
+      {title === "Финансы" ||
+      title === "Дашборд" ||
+      title === "Модерация категорий" ? (
         <div className={styles.iconSmall}>{icon}</div>
       ) : (
         <div className={styles.icon}>{icon}</div>

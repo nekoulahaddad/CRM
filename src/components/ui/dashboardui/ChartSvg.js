@@ -113,7 +113,7 @@ export default function ChartSvg() {
           if (dataset.polyline && dataset.polyline.formatter) {
             value = dataset.polyline.formatter(value);
           }
-          let edgePointX = point2X < chartCenterPoint.x ? 30 : chart.width - 30;
+          let edgePointX = point2X < chartCenterPoint.x ? 10 : chart.width - 10;
 
           if (point2X < chartCenterPoint.x) {
             leftLabelCoordinates.push(point2Y);
@@ -164,6 +164,6 @@ export default function ChartSvg() {
     },
   };
   return (
-    <Doughnut data={data} options={options} plugins={plugins} width="200px" />
+    <Doughnut data={data} options={options} plugins={plugins} width="160px" />
   );
 }

@@ -6,6 +6,7 @@ import { ReactComponent as Notifications } from "assets/Notifications.svg";
 import { ReactComponent as Database } from "assets/Database.svg";
 import { ReactComponent as Dashboard } from "assets/Dashboard.svg";
 import { ReactComponent as Connect } from "assets/Connect.svg";
+import { ReactComponent as Modify } from "assets/Modify.svg";
 import { NavLink } from "react-router-dom";
 
 export default function SideBar() {
@@ -30,6 +31,10 @@ export default function SideBar() {
       icon: <Dashboard />,
       url: "/dashboard",
     },
+    {
+      icon: <Modify />,
+      url: "/moderation",
+    },
   ];
   return (
     <div className={styles.wrapper}>
@@ -39,7 +44,9 @@ export default function SideBar() {
       <div className={styles.navLinksWrapper}>
         {navLinks.map((navlink, i) => (
           <div key={i} className={styles.NavLinkContainer}>
-            {navlink.url === "/finances" || navlink.url === "/dashboard" ? (
+            {navlink.url === "/finances" ||
+            navlink.url === "/dashboard" ||
+            navlink.url === "/moderation" ? (
               <NavLink
                 to={navlink.url}
                 className={({ isActive }) =>

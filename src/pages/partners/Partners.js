@@ -3,13 +3,29 @@ import { ReactComponent as Connect } from "assets/Connect.svg";
 import CrmTemplate from "components/crmTemplate/CrmTemplate";
 export default function Partners() {
   const headers = [
-    { title: "ID", dataIndex: "id", width: "98px" },
-    { title: "Название организации", dataIndex: "name", width: "248px" },
-    { title: "Магазин", dataIndex: "shop", width: "198px" },
-    { title: "№ Договора", dataIndex: "contractNo", width: "218px" },
-    { title: "Дата регистрации", dataIndex: "date", width: "198px" },
-    { title: "Телефон", dataIndex: "phone", width: "198px" },
-    { title: "Статус", dataIndex: "status", width: "191px" },
+    { title: "ID", dataIndex: "id", width: "98px", sorted: false },
+    {
+      title: "Название организации",
+      dataIndex: "name",
+      width: "248px",
+      sorted: false,
+    },
+    { title: "Магазин", dataIndex: "shop", width: "198px", sorted: false },
+    {
+      title: "№ Договора",
+      dataIndex: "contractNo",
+      width: "218px",
+      sorted: false,
+    },
+    {
+      title: "Дата регистрации",
+      dataIndex: "date",
+      width: "198px",
+      sorted: false,
+    },
+    { title: "Телефон", dataIndex: "phone", width: "198px", sorted: false },
+    { title: "Статус", dataIndex: "status", width: "189px", sorted: false },
+    { title: "Опции", dataIndex: "options", width: "216px", sorted: false },
   ];
   const data = [
     {
@@ -22,7 +38,7 @@ export default function Partners() {
       status: true,
     },
     {
-      id: "00000234",
+      id: "00000235",
       name: "ООО “Продукты”",
       shop: "Лента",
       contractNo: "ZZ-2021/01/015 000",
@@ -31,7 +47,7 @@ export default function Partners() {
       status: true,
     },
     {
-      id: "00000234",
+      id: "00000236",
       name: "ООО “Продукты”",
       shop: "Лента",
       contractNo: "ZZ-2021/01/015 000",

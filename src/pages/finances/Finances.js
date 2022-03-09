@@ -5,16 +5,27 @@ import OrderInfo from "components/orderInfo/OrderInfo";
 
 export default function Finances() {
   const headers = [
-    { title: "№ Заказа", dataIndex: "orderNo", width: "176.5px" },
-    { title: "Магазин", dataIndex: "shop", width: "185px" },
-    { title: "Клиент", dataIndex: "client", width: "298px" },
-    { title: "Сумма", dataIndex: "price", width: "160px" },
-    { title: "Адрес доставки", dataIndex: "address", width: "330px" },
-    { title: "Дата и время", dataIndex: "date", width: "241px" },
-    { title: "Статус", dataIndex: "status", width: "172px" },
+    {
+      title: "№ Заказа",
+      dataIndex: "orderNo",
+      width: "176.5px",
+      sorted: false,
+    },
+    { title: "Магазин", dataIndex: "shop", width: "185px", sorted: false },
+    { title: "Клиент", dataIndex: "client", width: "298px", sorted: false },
+    { title: "Сумма", dataIndex: "price", width: "160px", sorted: false },
+    {
+      title: "Адрес доставки",
+      dataIndex: "address",
+      width: "330px",
+      sorted: false,
+    },
+    { title: "Дата и время", dataIndex: "date", width: "241px", sorted: false },
+    { title: "Статус", dataIndex: "status", width: "172px", sorted: false },
   ];
   const data = [
     {
+      id: "00000234",
       orderNo: "00000234",
       shop: "Лента",
       client: "Смирнов Владимир",
@@ -24,7 +35,8 @@ export default function Finances() {
       status: "Доставлен",
     },
     {
-      orderNo: "00000234",
+      id: "00000235",
+      orderNo: "00000235",
       shop: "Лента",
       client: "Смирнов Владимир",
       price: "1 987,00 руб",
@@ -33,7 +45,8 @@ export default function Finances() {
       status: "Доставлен",
     },
     {
-      orderNo: "00000234",
+      id: "00000236",
+      orderNo: "00000236",
       shop: "Лента",
       client: "Смирнов Владимир",
       price: "1 987,00 руб",

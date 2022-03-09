@@ -4,11 +4,27 @@ import CrmTemplate from "components/crmTemplate/CrmTemplate";
 import PopupSubsicriptions from "components/ui/popupSubsicriptions/PopupSubsicriptions";
 export default function Subscriptions() {
   const headers = [
-    { title: "ID", dataIndex: "id", width: "206px" },
-    { title: "Название организации", dataIndex: "name", width: "282px" },
-    { title: "Магазин", dataIndex: "shop", width: "281px" },
-    { title: "Подписка", dataIndex: "subscription", width: "280px" },
-    { title: "Статус", dataIndex: "status", width: "282px" },
+    { title: "ID", dataIndex: "id", width: "206px", sorted: false },
+    {
+      title: "Название организации",
+      dataIndex: "name",
+      width: "282px",
+      sorted: false,
+    },
+    { title: "Магазин", dataIndex: "shop", width: "281px", sorted: false },
+    {
+      title: "Подписка",
+      dataIndex: "subscription",
+      width: "280px",
+      sorted: false,
+    },
+    { title: "Статус", dataIndex: "status", width: "282px", sorted: false },
+    {
+      title: "Информация",
+      dataIndex: "information",
+      width: "236px",
+      sorted: false,
+    },
   ];
   const data = [
     {
@@ -19,14 +35,14 @@ export default function Subscriptions() {
       status: "Неактивно",
     },
     {
-      id: "00000234",
+      id: "00000235",
       name: "ООО “Продукты”",
       shop: "Лента",
       subscription: "Золотая",
       status: "Неактивно",
     },
     {
-      id: "00000234",
+      id: "00000236",
       name: "ООО “Продукты”",
       shop: "Лента",
       subscription: "Золотая",

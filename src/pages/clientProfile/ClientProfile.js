@@ -14,17 +14,33 @@ export default function ClientProfile() {
   let navigate = useNavigate();
 
   const headers = [
-    { title: "№ Заказа", dataIndex: "orderNo" },
-    { title: "Дата и время", dataIndex: "date" },
-    { title: "Статус", dataIndex: "status" },
-    { title: "Магазин", dataIndex: "shop" },
-    { title: "Сумма", dataIndex: "price" },
-    { title: "Кол–во товаров", dataIndex: "quantity" },
-    { title: "Адрес доставки", dataIndex: "address" },
-    { title: "Доставка", dataIndex: "deliveryTime" },
+    { title: "№ Заказа", dataIndex: "orderNo", width: "197px", sorted: false },
+    { title: "Дата и время", dataIndex: "date", width: "199px", sorted: false },
+    { title: "Статус", dataIndex: "status", width: "195px", sorted: false },
+    { title: "Магазин", dataIndex: "shop", width: "197px", sorted: false },
+    { title: "Сумма", dataIndex: "price", width: "197px", sorted: false },
+    {
+      title: "Кол–во товаров",
+      dataIndex: "quantity",
+      width: "197px",
+      sorted: false,
+    },
+    {
+      title: "Адрес доставки",
+      dataIndex: "address",
+      width: "220px",
+      sorted: false,
+    },
+    {
+      title: "Доставка",
+      dataIndex: "deliveryTime",
+      width: "171px",
+      sorted: false,
+    },
   ];
   const data = [
     {
+      id: "00000234",
       orderNo: "564545645641",
       date: "Конcтантин Константинов",
       status: "5456564",
@@ -35,6 +51,7 @@ export default function ClientProfile() {
       deliveryTime: "dsadsad",
     },
     {
+      id: "00000235",
       orderNo: "564545645641",
       date: "Конcтантин Константинов",
       status: "5456564",
@@ -45,6 +62,29 @@ export default function ClientProfile() {
       deliveryTime: "dsadsad",
     },
     {
+      id: "00000236",
+      orderNo: "564545645641",
+      date: "Конcтантин Константинов",
+      status: "5456564",
+      shop: "mail.ru",
+      price: "445454",
+      quantity: "445454",
+      address: "dsadsad",
+      deliveryTime: "dsadsad",
+    },
+    {
+      id: "00000237",
+      orderNo: "564545645641",
+      date: "Конcтантин Константинов",
+      status: "5456564",
+      shop: "mail.ru",
+      price: "445454",
+      quantity: "445454",
+      address: "dsadsad",
+      deliveryTime: "dsadsad",
+    },
+    {
+      id: "00000238",
       orderNo: "564545645641",
       date: "Конcтантин Константинов",
       status: "5456564",
