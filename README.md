@@ -25,7 +25,7 @@ pm2 restart admin_zum
 `обратите внимание клиенты на фронте берёт информацию из модели customers на бэк`
 
 Допустимые параметры (GET):
-- sort_field (createdAt | activeTill ) - поле, по которому выполняется сортировка
+- sort_field (createdAt | lastLogin ) - поле, по которому выполняется сортировка
 - sort_direction (asc | desc) - направление сортировки
 - page - номер страницы для пагинации
 
