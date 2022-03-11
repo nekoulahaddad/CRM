@@ -29,13 +29,13 @@ export default function Dashboard() {
           <div className={styles.productsBlock}>
             <div className={styles.headerBlock}>Информация о партнерах:</div>
             {data1.map((element, i) => (
-              <DashboardBlock props={dataProps} />
+              <DashboardBlock key={i} props={dataProps} />
             ))}
           </div>
           <div className={styles.buyersBlock}>
             <div className={styles.headerBlock}>Информация о покупателях:</div>
             {data2.map((element, i) => (
-              <DashboardBlock props={dataProps} />
+              <DashboardBlock key={i} props={dataProps} />
             ))}
           </div>
           <div className={styles.subscriptionsBlock}>

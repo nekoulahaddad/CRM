@@ -1,25 +1,21 @@
 .wrapper {
   display: flex;
   flex-direction: row;
-  padding-bottom: 15px;
+  padding-bottom: 13px;
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
-  .iconSmall {
-    svg {
-      padding: 7px 11px;
-      margin-top: 2px;
-    }
-    margin-right: 10px;
-    background-color: #b3de75;
-    border-radius: 50%;
-  }
+  max-width: 1634px;
   .icon {
-    svg {
-      padding: 4px 9px;
-      margin-top: 2px;
+    margin-left: -1px;
+    margin-right: 10.3px;
+    div {
+      background-color: #b3de75;
+      display: flex;
+      border-radius: 50%;
+      width: 47.9px;
+      height: 44px;
+      justify-content: center;
+      align-items: center;
     }
-    margin-right: 10px;
-    background-color: #b3de75;
-    border-radius: 50%;
   }
   .title {
     font-size: 18px;

@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { ReactComponent as Modify } from "assets/Modify.svg";
 import CrmTemplate from "components/crmTemplate/CrmTemplate";
-
+import PopupCategories from "components/ui/popupCategories/PopupCategories";
 export default function CategoryModeration() {
+  const [open, setOpen] = useState(false);
+
   const headers = [
     { title: "ID", dataIndex: "id", width: "98px", sorted: false },
     {
@@ -14,23 +16,23 @@ export default function CategoryModeration() {
     {
       title: "Магазин",
       dataIndex: "shop",
-      width: "198px",
+      width: "197px",
       sorted: false,
     },
     {
       title: "Категория",
       dataIndex: "category",
-      width: "218px",
+      width: "216px",
       sorted: false,
     },
     {
       title: "Создана",
       dataIndex: "createdAt",
-      width: "198px",
+      width: "197px",
       sorted: false,
     },
-    { title: "Приянт", dataIndex: "acceptedAt", width: "198px", sorted: false },
-    { title: "Статус", dataIndex: "status", width: "189px", sorted: false },
+    { title: "Приянт", dataIndex: "acceptedAt", width: "197px", sorted: false },
+    { title: "Статус", dataIndex: "status", width: "188px", sorted: false },
     { title: "Опции", dataIndex: "options", width: "216px", sorted: false },
   ];
   const data = [
@@ -72,11 +74,14 @@ export default function CategoryModeration() {
     data,
     props,
     placeholder,
+    setOpen,
+    open,
   };
 
   return (
     <React.Fragment>
       {componentProps ? <CrmTemplate componentProps={componentProps} /> : null}
+      <PopupCategories open={open} setOpen={setOpen} />
     </React.Fragment>
   );
 }
