@@ -38,18 +38,20 @@ export default function PopupSubsicriptions() {
       </div>
       <div className={styles.title}>История подписок:</div>
       <table className={styles.popupTable}>
-        <tr>
-          <th>Тип подписки</th>
-          <th>Дата покупки</th>
-          <th>Дата окончания </th>
-        </tr>
-        {subscriptions.map((sub, i) => (
-          <tr key={i}>
-            <td>{sub.type}</td>
-            <td>{sub.startDate}</td>
-            <td>{sub.endDate}</td>
+        <tbody>
+          <tr>
+            <th>Тип подписки</th>
+            <th>Дата покупки</th>
+            <th>Дата окончания </th>
           </tr>
-        ))}
+          {subscriptions.map((sub, i) => (
+            <tr key={i}>
+              <td>{sub.type}</td>
+              <td>{sub.startDate}</td>
+              <td>{sub.endDate}</td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
   );

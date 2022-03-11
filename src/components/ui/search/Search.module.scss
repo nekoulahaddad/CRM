@@ -1,13 +1,13 @@
 .wrapper {
   margin-top: 3px;
-  margin-right: 10px;
+  margin-right: 3px;
   display: flex;
   flex-direction: row;
   border: 1px solid rgba(190, 190, 190, 0.38);
   box-sizing: border-box;
   box-shadow: 0px 1px 10px -1px rgba(0, 0, 0, 0.11);
   border-radius: 8px;
-  flex-basis: 678px;
+  flex-basis: 679px;
   flex-grow: 0;
   height: 45px;
   position: relative;
@@ -21,10 +21,10 @@
     margin-left: 8px;
   }
   .input::placeholder {
+    font-family: "MontserratBold";
     font-style: normal;
-    font-weight: bold;
+    font-weight: 600;
     font-size: 16px;
-    line-height: 22px;
     color: #c0c0c0;
   }
   .icon {

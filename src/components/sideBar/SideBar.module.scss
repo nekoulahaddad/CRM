@@ -4,33 +4,38 @@
   border-radius: 0px 50px 0px 0px;
   background: #c5e8f4;
   box-shadow: 5px 35px 8px rgba(0, 0, 0, 0.25);
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
 
   .logo {
-    margin: 28px 0px 58px -5px;
+    margin: 28px 5px 61px 5px;
   }
   .navLinksWrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     .NavLinkContainer {
-      margin-bottom: 19px;
+      margin-bottom: 20px;
       .navlink {
-        svg {
-          padding: 8px 8px 8px 8px;
-        }
-      }
-      .navlinkSmall {
-        svg {
-          padding: 11px;
-          margin-top: -3px;
+        div {
+          display: flex;
+          border-radius: 50%;
+          width: 47.9px;
+          height: 44px;
+          justify-content: center;
+          align-items: center;
         }
       }
     }
   }
 }
 .active {
-  svg {
+  div {
     background-color: #b3de75;
     border-radius: 50%;
+    width: 47.9px;
+    height: 44px;
   }
 }

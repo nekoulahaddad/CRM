@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SideBar from "components/sideBar/SideBar";
 import styles from "./CrmTemplate.module.scss";
 import Header from "components/header/Header";
@@ -11,9 +11,9 @@ import * as XLSX from "xlsx";
 import { ExportSheet } from "react-xlsx-sheet";
 
 export default function CrmTemplate({ componentProps }) {
-  const { headers, data, props, placeholder, PopupSubsicriptions } =
+  const { headers, data, props, placeholder, PopupSubsicriptions, open } =
     componentProps;
-
+  const [windowHeight, setWindowHeight] = useState("100%");
   const printTarget = () => {
     let divToPrint = document.getElementById("tableId");
     let htmlToPrint =
@@ -43,9 +43,16 @@ export default function CrmTemplate({ componentProps }) {
     // }, 250);
   };
 
+  useEffect(() => {
+    setWindowHeight(document.documentElement.scrollHeight);
+  }, [open, windowHeight]);
+
   const ids = ["1"];
   return (
-    <div className={styles.wrapper}>
+    <div
+      style={open ? { height: windowHeight } : null}
+      className={styles.wrapper}
+    >
       <SideBar />
       <div className={styles.container}>
         <Header props={props} />

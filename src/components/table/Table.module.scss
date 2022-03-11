@@ -13,7 +13,7 @@
 table {
   table-layout: fixed;
   // width: 1635px;
-  margin-top: 20px;
+  margin-top: 18px;
   border-collapse: collapse;
   .orderInfoBlock {
     border: 1px solid #c0c0c0;
@@ -21,9 +21,13 @@ table {
   tr {
     position: relative;
     td {
+      height: 44px;
       font-family: MontserratFont;
       color: #000000;
       font-feature-settings: "liga" off;
+    }
+    th {
+      height: 50px;
     }
     .tableCell {
       text-overflow: ellipsis;
@@ -35,7 +39,6 @@ table {
       font-size: 14px;
       border: 1px solid #c0c0c0;
       border-collapse: collapse;
-      height: 48px;
       text-align: center;
       line-height: 150%;
       .tableLink {
@@ -76,7 +79,7 @@ table {
   cursor: pointer;
 }
 .boxInputContainer {
-  width: 52px;
+  width: 51px;
   .boxInput {
     -moz-appearance: none;
     -webkit-appearance: none;

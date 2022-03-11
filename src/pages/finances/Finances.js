@@ -13,14 +13,14 @@ export default function Finances() {
     },
     { title: "Магазин", dataIndex: "shop", width: "185px", sorted: false },
     { title: "Клиент", dataIndex: "client", width: "298px", sorted: false },
-    { title: "Сумма", dataIndex: "price", width: "160px", sorted: false },
+    { title: "Сумма", dataIndex: "price", width: "158px", sorted: false },
     {
       title: "Адрес доставки",
       dataIndex: "address",
       width: "330px",
       sorted: false,
     },
-    { title: "Дата и время", dataIndex: "date", width: "241px", sorted: false },
+    { title: "Дата и время", dataIndex: "date", width: "240px", sorted: false },
     { title: "Статус", dataIndex: "status", width: "172px", sorted: false },
   ];
   const data = [

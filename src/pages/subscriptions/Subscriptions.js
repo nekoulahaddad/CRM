@@ -4,14 +4,14 @@ import CrmTemplate from "components/crmTemplate/CrmTemplate";
 import PopupSubsicriptions from "components/ui/popupSubsicriptions/PopupSubsicriptions";
 export default function Subscriptions() {
   const headers = [
-    { title: "ID", dataIndex: "id", width: "206px", sorted: false },
+    { title: "ID", dataIndex: "id", width: "204px", sorted: false },
     {
       title: "Название организации",
       dataIndex: "name",
       width: "282px",
       sorted: false,
     },
-    { title: "Магазин", dataIndex: "shop", width: "281px", sorted: false },
+    { title: "Магазин", dataIndex: "shop", width: "280px", sorted: false },
     {
       title: "Подписка",
       dataIndex: "subscription",
@@ -22,7 +22,7 @@ export default function Subscriptions() {
     {
       title: "Информация",
       dataIndex: "information",
-      width: "236px",
+      width: "235px",
       sorted: false,
     },
   ];
