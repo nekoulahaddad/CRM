@@ -28,6 +28,7 @@ pm2 restart admin_zum
 - sort_field (createdAt | lastLogin ) - поле, по которому выполняется сортировка
 - sort_direction (asc | desc) - направление сортировки
 - page - номер страницы для пагинации
+- limit - количество элементов на каждом странице
 
 **Пример ответа:**
 
