@@ -15,7 +15,7 @@ AdminJWTSchema.methods.generateAuthToken = function () {
   const admin = this;
   const secret = JWT_SECRET;
   const token = jwt.sign({ _id: admin.admin_id }, secret, {
-    expiresIn: "5m",
+    expiresIn: "300s",
   });
   console.log(token);
   admin.token = token;

@@ -21,7 +21,7 @@ export default function Partners() {
       title: "Дата регистрации",
       dataIndex: "date",
       width: "197px",
-      sorted: false,
+      sorted: true,
     },
     { title: "Телефон", dataIndex: "phone", width: "197px", sorted: false },
     { title: "Статус", dataIndex: "status", width: "188px", sorted: false },
@@ -60,7 +60,7 @@ export default function Partners() {
     icon: <Connect />,
     title: "Партнеры",
   };
-  const placeholder = "Поиск по ID партнёра...";
+  const placeholder = "Поиск по магазину...";
   const componentProps = {
     headers,
     data,

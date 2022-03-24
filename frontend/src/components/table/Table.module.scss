@@ -28,6 +28,20 @@ table {
     }
     th {
       height: 50px;
+      position: relative;
+      .sortIcon {
+        position: absolute;
+        right: 7px;
+        top: 30%;
+
+        .sortUp {
+          display: block;
+          cursor: pointer;
+        }
+        .sortDown {
+          cursor: pointer;
+        }
+      }
     }
     .tableCell {
       text-overflow: ellipsis;

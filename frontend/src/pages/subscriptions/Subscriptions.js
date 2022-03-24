@@ -16,9 +16,9 @@ export default function Subscriptions() {
       title: "Подписка",
       dataIndex: "subscription",
       width: "280px",
-      sorted: false,
+      sorted: true,
     },
-    { title: "Статус", dataIndex: "status", width: "282px", sorted: false },
+    { title: "Статус", dataIndex: "status", width: "282px", sorted: true },
     {
       title: "Информация",
       dataIndex: "information",
@@ -55,7 +55,7 @@ export default function Subscriptions() {
   };
   const ids = ["1"];
 
-  const placeholder = "Поиск по ID партнёра...";
+  const placeholder = "Поиск по магазину...";
   const componentProps = {
     headers,
     data,

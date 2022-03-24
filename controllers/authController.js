@@ -67,7 +67,7 @@ export const loginAdmin = async (req, res) => {
     if (!isMatch) {
       return res.status(401).send({
         status: "error",
-        message: "Неверный пароль, попробуйте еще раз!clear",
+        message: "Неверный пароль, попробуйте еще раз!",
       });
     }
 
@@ -79,11 +79,15 @@ export const loginAdmin = async (req, res) => {
     await newAdminJWT.generateAuthToken();
     await newAdminJWT.generateRefreshToken();
     await newAdminJWT.save();
-
-    res.status(200).send({
-      status: "ok",
-      message: newAdminJWT,
-    });
+    res
+      .status(200)
+      .cookie("refreshToken", newAdminJWT.refresh, {
+        httpOnly: true,
+      })
+      .send({
+        status: "ok",
+        message: newAdminJWT,
+      });
   } catch (error) {
     res.status(500).send({
       status: "error",
@@ -171,24 +175,21 @@ export const deleteAdmin = async (req, res) => {
 
 export const refreshTokenAdmin = async (req, res) => {
   try {
-    const { refreshToken } = req.body;
-
+    const { refreshToken } = req.cookies;
     if (!refreshToken) {
       return res.status(401).send({
         status: "error",
         message: "Токен обновления не предоставлен",
       });
     }
-
     await jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
-    const Admin = await Admin.findOne(refreshToken._id).exec();
+    const Admin = await AdminJWT.findOne({ refresh: refreshToken }).exec();
 
     if (!Admin) {
       return res.status(401).send({
         message: "Админ не найден",
       });
     }
-
     await Admin.generateAuthToken();
     res.status(200).send({
       status: "ok",
@@ -223,11 +224,11 @@ export const logoutAdmin = async (req, res) => {
   } catch (error) {
     res.status(500).send({
       status: "error",
-      message: error,
+      message: "Токен истёк",
     });
   }
 };
 
 export const testAuth = (req, res) => {
-  res.status(200).send({ status: "ok", message: "i am authenticated" });
+  res.status(200).send({ status: "ok", message: req.token });
 };

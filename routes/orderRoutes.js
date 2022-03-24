@@ -8,6 +8,6 @@ import {
 
 router.get("/insert", insertOrders);
 router.get("/all", getOrders);
-router.get("/get/:id", deleteOrder);
+router.get("/delete/:id", deleteOrder);
 
 export default router;

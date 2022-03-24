@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import styles from "./Table.module.scss";
 import { Link } from "react-router-dom";
 import { ReactComponent as ThreeDots } from "assets/ThreeDots.svg";
+import { ReactComponent as UPSort } from "assets/UPSort.svg";
+import { ReactComponent as DownSort } from "assets/DownSort.svg";
 import PopupOptions from "components/ui/popupOptions/PopupOptions";
 import SwitchBotton from "components/ui/bottons/SwitchBotton";
 export default function Table({ componentProps }) {
@@ -28,7 +30,7 @@ export default function Table({ componentProps }) {
 
   const handleCheckBoxAll = (checked) => {
     checked
-      ? setCheckedRows(data.map((record) => record.id))
+      ? setCheckedRows(data.map((record) => record._id))
       : setCheckedRows([]);
   };
 
@@ -51,22 +53,28 @@ export default function Table({ componentProps }) {
             {headers.map((header, i) => (
               <th style={{ width: header.width }} key={header.title}>
                 {header.title}
+                {header.sorted ? (
+                  <div className={styles.sortIcon}>
+                    <UPSort className={styles.sortUp} />
+                    <DownSort className={styles.sortDown} />
+                  </div>
+                ) : null}
               </th>
             ))}
           </tr>
           {data &&
-            data.map((record, id) => (
-              <React.Fragment key={id}>
-                <tr className={OrderInfo ? styles.curser : ""} key={id}>
+            data.map((record) => (
+              <React.Fragment key={record._id}>
+                <tr className={OrderInfo ? styles.curser : ""}>
                   <td className={styles.boxInputContainer}>
                     <label>
                       <input
                         onChange={(e) =>
-                          handleCheckBoxOne(e.target.checked, record.id)
+                          handleCheckBoxOne(e.target.checked, record._id)
                         }
                         className={styles.boxInput}
                         type="checkbox"
-                        checked={checkedRows.includes(record.id)}
+                        checked={checkedRows.includes(record._id)}
                       />
                     </label>
                   </td>
@@ -75,13 +83,13 @@ export default function Table({ componentProps }) {
                       {header.dataIndex === "options" ||
                       header.dataIndex === "information" ? (
                         <td
-                          onClick={() => handlePopUp(id)}
+                          onClick={() => handlePopUp(record._id)}
                           className={styles.ThreeDots}
                         >
                           <ThreeDots />
                           {props &&
                           props.title !== "Подписки" &&
-                          openedOptions === id ? (
+                          openedOptions === record._id ? (
                             <div className={styles.PopupOptions}>
                               <PopupOptions>
                                 {props &&
@@ -97,7 +105,7 @@ export default function Table({ componentProps }) {
                                   <React.Fragment>
                                     <Link
                                       className={styles.tableLink}
-                                      to={`/clients/profile/${record.id}`}
+                                      to={`/clients/profile/${record._id}`}
                                     >
                                       Перейти в профиль
                                     </Link>
@@ -116,7 +124,7 @@ export default function Table({ componentProps }) {
                               ? record[header.dataIndex]
                               : null
                           }
-                          onClick={() => handleOrderPopUp(id)}
+                          onClick={() => handleOrderPopUp(record._id)}
                           key={i}
                         >
                           {typeof record[header.dataIndex] === "boolean" ? (
@@ -127,12 +135,12 @@ export default function Table({ componentProps }) {
                       )}
                     </React.Fragment>
                   ))}
-                  {PopupSubsicriptions && openedOptions === id
+                  {PopupSubsicriptions && openedOptions === record._id
                     ? PopupSubsicriptions
                     : null}
                 </tr>
 
-                {OrderInfo && openOrder === id ? (
+                {OrderInfo && openOrder === record._id ? (
                   <tr className={styles.orderInfoBlock}>
                     <td colSpan="8" className={styles.extra}>
                       {OrderInfo}

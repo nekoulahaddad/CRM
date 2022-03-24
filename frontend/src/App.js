@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import "./App.css";
 import Login from "./pages/login/Login";
 import ChangePassword from "./pages/login/ChangePassword";
@@ -7,6 +8,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import Clients from "./pages/clients/Clients";
 import Partners from "pages/partners/Partners";
 import Finances from "pages/finances/Finances";
@@ -14,20 +16,14 @@ import Dashboard from "pages/dashboard/Dashboard";
 import Subscriptions from "pages/subscriptions/Subscriptions";
 import ClientProfile from "pages/clientProfile/ClientProfile";
 import CategoryModeration from "pages/categoryModeration/CategoryModeration";
+import { refreshToken, checkToken } from "store/authSlice";
 function App() {
   return (
     <div className="App">
       <Router>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route
-            path="/changepassword"
-            element={
-              <RequireAuth redirectTo="/">
-                <ChangePassword />
-              </RequireAuth>
-            }
-          />
+          <Route path="/changepassword" element={<ChangePassword />} />
           <Route
             path="/clients"
             element={
@@ -91,8 +87,16 @@ function App() {
 }
 
 function RequireAuth({ children, redirectTo }) {
-  let isAuthenticated = true;
-  return isAuthenticated ? children : <Navigate to={redirectTo} />;
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(checkToken()).then((result) => {
+      if (result.payload.message === "Токен истёк") {
+        dispatch(refreshToken());
+      }
+    });
+  }, []);
+  const { loggedIn } = useSelector((state) => state.auth);
+  return loggedIn ? children : <Navigate to={redirectTo} />;
 }
 
 export default App;
