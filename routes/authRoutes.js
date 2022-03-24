@@ -7,6 +7,7 @@ import {
   deleteAdmin,
   logoutAdmin,
   testAuth,
+  refreshTokenAdmin,
 } from "../controllers/authController.js";
 import { auth } from "../middlewares/auth.js";
 const router = express.Router();
@@ -17,6 +18,7 @@ router.get("/all", getAdmins);
 router.get("/get/:id", getAdmin);
 router.get("/delete/:id", deleteAdmin);
 router.get("/logout/:id", logoutAdmin);
-router.get("/test", auth, testAuth);
+router.get("/refreshToken", refreshTokenAdmin);
+router.get("/testAuth", auth, testAuth);
 
 export default router;

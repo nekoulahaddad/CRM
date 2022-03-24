@@ -23,4 +23,12 @@
     margin-bottom: auto;
     font-weight: bold;
   }
+  .logout {
+    margin-top: 15px;
+    text-align: right;
+    width: 100%;
+    .logoutIcon {
+      cursor: pointer;
+    }
+  }
 }

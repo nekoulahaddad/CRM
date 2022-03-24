@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import authRoutes from "./routes/authRoutes.js";
 import clientRoutes from "./routes/clientRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
@@ -12,16 +13,14 @@ const app = express();
 const db = config.MONGO_URI;
 
 app.use(express.json());
+app.use(cookieParser());
 
 mongoose
-  .connect(db, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(db)
   .then(() => console.log("the database is ready to use ..."))
   .catch((err) => console.log(err));
 
-app.use(cors());
+app.use(cors({ credentials: true, origin: "http://localhost:3030" }));
 app.use("/api/admin", authRoutes);
 app.use("/api/client", clientRoutes);
 app.use("/api/order", orderRoutes);

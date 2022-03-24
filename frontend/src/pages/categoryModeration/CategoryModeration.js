@@ -6,24 +6,24 @@ export default function CategoryModeration() {
   const [open, setOpen] = useState(false);
 
   const headers = [
-    { title: "ID", dataIndex: "id", width: "98px", sorted: false },
+    { title: "ID", dataIndex: "id", width: "98px", sorted: true },
     {
       title: "Название организации",
       dataIndex: "name",
       width: "248px",
-      sorted: false,
+      sorted: true,
     },
     {
       title: "Магазин",
       dataIndex: "shop",
       width: "197px",
-      sorted: false,
+      sorted: true,
     },
     {
       title: "Категория",
       dataIndex: "category",
       width: "216px",
-      sorted: false,
+      sorted: true,
     },
     {
       title: "Создана",
@@ -32,7 +32,7 @@ export default function CategoryModeration() {
       sorted: false,
     },
     { title: "Приянт", dataIndex: "acceptedAt", width: "197px", sorted: false },
-    { title: "Статус", dataIndex: "status", width: "188px", sorted: false },
+    { title: "Статус", dataIndex: "status", width: "188px", sorted: true },
     { title: "Опции", dataIndex: "options", width: "216px", sorted: false },
   ];
   const data = [
@@ -66,7 +66,7 @@ export default function CategoryModeration() {
   ];
   const props = {
     icon: <Modify />,
-    title: "Модерация категорий",
+    title: "Модерация",
   };
   const placeholder = "Поиск по магазину";
   const componentProps = {

@@ -1,9 +1,37 @@
 import { Customer } from "../models/customers/customer.js";
 import { clientsData } from "../data/clients.js";
+import { Counter } from "../models/counter/counter.js";
+import Fuse from "fuse.js";
 
 export const insertClients = async (req, res) => {
   try {
     const clients = await Customer.insertMany(clientsData);
+
+    res.status(200).send({
+      status: "ok",
+      message: clients,
+    });
+  } catch (error) {
+    res.status(500).send({
+      status: "error",
+      message: error.message,
+    });
+  }
+};
+
+export const addClient = async (req, res) => {
+  try {
+    const counter = await Counter.findOneAndUpdate(
+      { name: "clientsCounter" },
+      { $inc: { count: 1 } },
+      { upsert: true }
+    );
+    const newClient = {
+      ...clientsData[0],
+      displayID: counter ? ("0000000" + counter.count).slice(-7) : "00000000",
+    };
+    const clients = await Customer.create(newClient);
+
     res.status(200).send({
       status: "ok",
       message: clients,
@@ -17,9 +45,25 @@ export const insertClients = async (req, res) => {
 };
 
 export const getClients = async (req, res) => {
+  let { page, sort_field, sort_direction, limit, searchTerm } = req.query;
+  const options = {
+    keys: ["name", "phone"],
+  };
+  let clients = {};
+  console.log(searchTerm);
   try {
-    const clients = await Customer.find({});
+    const countProducts = await Customer.find({}).count();
+    clients = await Customer.find({})
+      .limit(limit)
+      .skip(limit * page)
+      .sort({ [sort_field]: sort_direction })
+      .exec();
 
+    const fuse = new Fuse(clients, options);
+    if (searchTerm) {
+      const searchResult = fuse.search(searchTerm);
+      clients = searchResult.map((client) => client.item);
+    }
     if (!clients) {
       return res.status(404).send({
         status: "error",
@@ -28,7 +72,7 @@ export const getClients = async (req, res) => {
     }
     res.status(200).send({
       status: "ok",
-      message: clients,
+      message: { clients, total_pages: Math.ceil(countProducts / limit) },
     });
   } catch (error) {
     res.status(500).send({
@@ -80,13 +124,35 @@ export const editClient = async (req, res) => {
   }
 };
 
+export const searchClients = async (req, res) => {
+  const q = "+7";
+
+  if (q.trim().length === 0) {
+    return;
+  }
+
+  try {
+    const results = await Customer.fuzzySearch(q);
+
+    res.status(200).json({
+      status: "ok",
+      message: results,
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "Error",
+      message: err,
+    });
+  }
+};
+
 export const deleteClient = async (req, res) => {
   try {
     const { id } = req.params;
 
     const client = await Customer.findById({ _id: id });
     if (!client) {
-      res.status(404).send({
+      return res.status(404).send({
         status: "error",
         message: "клиент не найден",
       });

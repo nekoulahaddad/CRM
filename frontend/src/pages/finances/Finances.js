@@ -20,8 +20,8 @@ export default function Finances() {
       width: "330px",
       sorted: false,
     },
-    { title: "Дата и время", dataIndex: "date", width: "240px", sorted: false },
-    { title: "Статус", dataIndex: "status", width: "172px", sorted: false },
+    { title: "Дата и время", dataIndex: "date", width: "240px", sorted: true },
+    { title: "Статус", dataIndex: "status", width: "172px", sorted: true },
   ];
   const data = [
     {
