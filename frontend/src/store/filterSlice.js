@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const filterSlice = createSlice({
   name: "filters",
   initialState: {
-    sort_field: "",
-    sort_direction: "",
+    sort_field: "createdAt",
+    sort_direction: "asc",
     page: 0,
     limit: "10",
     searchTerm: "",
@@ -27,12 +27,6 @@ const filterSlice = createSlice({
     },
   },
 });
-export const {
-  changePage,
-  changeSearchTerm,
-  changeSortField,
-  changeSortDiection,
-  changeLimit,
-} = filterSlice.actions;
+export const { changePage, changeSearchTerm, changeSortField, changeSortDiection, changeLimit } = filterSlice.actions;
 
 export default filterSlice.reducer;

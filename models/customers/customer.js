@@ -9,8 +9,9 @@ const customerSchema = new Schema(
     patronymic: { type: String, required: false },
     birthday: { type: Date, required: false, default: null },
     phone: { type: String, required: true },
+    gender: { type: String, required: false },
     email: { type: String, required: true },
-    region: {
+    city: {
       _id: { type: Types.ObjectId },
       value: { type: String },
     },

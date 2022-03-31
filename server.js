@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import authRoutes from "./routes/authRoutes.js";
 import clientRoutes from "./routes/clientRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
+import regionRoutes from "./routes/regionRoutes.js";
 
 import path from "path";
 import config from "./config/index.js";
@@ -24,6 +25,7 @@ app.use(cors({ credentials: true, origin: "http://localhost:3030" }));
 app.use("/api/admin", authRoutes);
 app.use("/api/client", clientRoutes);
 app.use("/api/order", orderRoutes);
+app.use("/api/region", regionRoutes);
 
 /* production
 app.use(express.static("frontend/build"));

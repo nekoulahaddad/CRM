@@ -12,6 +12,12 @@
   line-height: 35px;
   text-align: center;
   margin-left: 18px;
+  position: relative;
+}
+.sortIcon {
+  position: absolute;
+  right: 11px;
+  top: 40%;
 }
 .switch {
   position: relative;
@@ -74,4 +80,8 @@ input {
   &:before {
     border-radius: 50%;
   }
+}
+
+.sortOption {
+  cursor: pointer;
 }

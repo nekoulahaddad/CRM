@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SideBar from "components/sideBar/SideBar";
 import styles from "./ClientProfile.module.scss";
 import Header from "components/header/Header";
@@ -10,9 +10,14 @@ import { ReactComponent as ArrowBack } from "assets/ArrowBack.svg";
 import { useNavigate } from "react-router-dom";
 import SwitchBotton from "components/ui/bottons/SwitchBotton";
 import OrderInfo from "components/orderInfo/OrderInfo";
+import { useParams } from "react-router-dom";
+import { fetchClient } from "store/clientSlice";
+import { useDispatch, useSelector } from "react-redux";
 export default function ClientProfile() {
+  const { client } = useSelector((state) => state.clients);
+  const dispatch = useDispatch();
   let navigate = useNavigate();
-
+  const { id } = useParams();
   const headers = [
     { title: "№ Заказа", dataIndex: "orderNo", width: "197px", sorted: false },
     { title: "Дата и время", dataIndex: "date", width: "199px", sorted: false },
@@ -100,7 +105,10 @@ export default function ClientProfile() {
     title: "Клиенты",
   };
   const componentProps = { headers, data, OrderInfo: <OrderInfo /> };
-
+  useEffect(() => {
+    console.log(id);
+    dispatch(fetchClient({ id }));
+  }, []);
   return (
     <div className={styles.wrapper}>
       <SideBar />
@@ -114,9 +122,7 @@ export default function ClientProfile() {
           <div>
             <SwitchBotton />
           </div>
-          <div className={styles.description}>
-            При неактивном статусе клиент будет заблокирован*
-          </div>
+          <div className={styles.description}>При неактивном статусе клиент будет заблокирован*</div>
         </div>
         <div className={styles.title}>Заказы:</div>
         <Table componentProps={componentProps} />

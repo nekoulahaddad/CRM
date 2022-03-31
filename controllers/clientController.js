@@ -21,11 +21,7 @@ export const insertClients = async (req, res) => {
 
 export const addClient = async (req, res) => {
   try {
-    const counter = await Counter.findOneAndUpdate(
-      { name: "clientsCounter" },
-      { $inc: { count: 1 } },
-      { upsert: true }
-    );
+    const counter = await Counter.findOneAndUpdate({ name: "clientsCounter" }, { $inc: { count: 1 } }, { upsert: true });
     const newClient = {
       ...clientsData[0],
       displayID: counter ? ("0000000" + counter.count).slice(-7) : "00000000",
@@ -46,23 +42,27 @@ export const addClient = async (req, res) => {
 
 export const getClients = async (req, res) => {
   let { page, sort_field, sort_direction, limit, searchTerm } = req.query;
-  const options = {
-    keys: ["name", "phone"],
+  RegExp.quote = function (str) {
+    return str.replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1");
   };
   let clients = {};
-  console.log(searchTerm);
+  let countProducts = "";
+  var regex = new RegExp(RegExp.quote(searchTerm), "gi");
   try {
-    const countProducts = await Customer.find({}).count();
-    clients = await Customer.find({})
-      .limit(limit)
-      .skip(limit * page)
-      .sort({ [sort_field]: sort_direction })
-      .exec();
-
-    const fuse = new Fuse(clients, options);
-    if (searchTerm) {
-      const searchResult = fuse.search(searchTerm);
-      clients = searchResult.map((client) => client.item);
+    if (!searchTerm) {
+      countProducts = await Customer.find({}).count();
+      clients = await Customer.find({})
+        .limit(limit)
+        .skip(limit * page)
+        .sort({ [sort_field]: sort_direction })
+        .exec();
+    } else {
+      countProducts = await Customer.find({ $or: [{ name: regex }, { phone: regex }] }).count();
+      clients = await Customer.find({ $or: [{ name: regex }, { phone: regex }] })
+        .limit(limit)
+        .skip(limit * page)
+        .sort({ [sort_field]: sort_direction })
+        .exec();
     }
     if (!clients) {
       return res.status(404).send({

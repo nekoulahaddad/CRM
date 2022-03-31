@@ -11,8 +11,7 @@ import * as XLSX from "xlsx";
 import { ExportSheet } from "react-xlsx-sheet";
 
 export default function CrmTemplate({ componentProps }) {
-  const { headers, data, props, placeholder, PopupSubsicriptions, open } =
-    componentProps;
+  const { headers, data, props, placeholder, PopupSubsicriptions, open } = componentProps;
   const [windowHeight, setWindowHeight] = useState("100%");
   const printTarget = () => {
     let divToPrint = document.getElementById("tableId");
@@ -42,6 +41,7 @@ export default function CrmTemplate({ componentProps }) {
     //   windowToPrint.close();
     // }, 250);
   };
+  const [openSort, setOpenSort] = useState(false);
 
   useEffect(() => {
     setWindowHeight(document.documentElement.scrollHeight);
@@ -49,42 +49,24 @@ export default function CrmTemplate({ componentProps }) {
 
   const ids = ["1"];
   return (
-    <div
-      style={open ? { height: windowHeight } : null}
-      className={styles.wrapper}
-    >
+    <div style={open ? { height: windowHeight } : null} className={styles.wrapper}>
       <SideBar />
       <div className={styles.container}>
         <Header props={props} />
         <div className={styles.controlSection}>
           <Search placeholder={placeholder} />
-          <div className={styles.downloadLink} data={data} headers={headers}>
-            <ControlBotton title="Сортировать" />
+          <div onClick={() => setOpenSort(!openSort)} className={styles.downloadLink} data={data} headers={headers}>
+            <ControlBotton title="Сортировать" openSort={openSort} />
           </div>
           <div className={styles.downloadLink} data={data} headers={headers}>
-            <ExportSheet
-              header={headers}
-              fileName={props.title}
-              dataSource={data}
-              xlsx={XLSX}
-            >
+            <ExportSheet header={headers} fileName={props.title} dataSource={data} xlsx={XLSX}>
               <button className={styles.controlBotton}>Экспорт в Excel</button>
             </ExportSheet>
           </div>
-          <div
-            onClick={() => printTarget()}
-            className={styles.downloadLink}
-            data={data}
-            headers={headers}
-          >
+          <div onClick={() => printTarget()} className={styles.downloadLink} data={data} headers={headers}>
             <ControlBotton title="Экспорт в PDF" />
           </div>
-          <div
-            onClick={() => window.print()}
-            className={styles.downloadLink}
-            data={data}
-            headers={headers}
-          >
+          <div onClick={() => window.print()} className={styles.downloadLink} data={data} headers={headers}>
             <ControlBotton title="Распечатать" />
           </div>
         </div>
