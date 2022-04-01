@@ -86,7 +86,7 @@ export default function Table({ componentProps }) {
                           {props && props.title !== "Подписки" && openedOptions === record._id ? (
                             <div className={styles.PopupOptions}>
                               <PopupOptions>
-                                {props && props.title === "Модерация категорий" ? (
+                                {props && props.title === "Модерация" ? (
                                   <React.Fragment>
                                     <div onClick={() => setOpen(true)}>Посмотреть категорию</div>
                                     <div>Одобрить</div>

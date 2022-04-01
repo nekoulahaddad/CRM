@@ -20,7 +20,7 @@ export default function Pagination() {
             {page > 0 ? <div onClick={() => dispatch(changePage(0))}>1</div> : null}
             {page > 1 ? <div onClick={() => dispatch(changePage(1))}>2</div> : null}
             {page > 2 ? <div>...</div> : null}
-            {page === numberOfPages - 1 && <div onClick={() => adjustPage(-1)}>{page}</div>}
+            {page === numberOfPages - 1 && numberOfPages > 3 ? <div onClick={() => adjustPage(-1)}>{page}</div> : null}
             <div className={styles.active}>{page + 1}</div>
             {page < numberOfPages - 1 ? <div onClick={() => adjustPage(1)}>{page + 2}</div> : null}
             {page < numberOfPages - 1 ? <div onClick={() => adjustPage(1)}>&gt;</div> : <div className={styles.disabled}>&gt;</div>}

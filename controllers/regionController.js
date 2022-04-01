@@ -39,3 +39,43 @@ export const insertCity = async (req, res) => {
     });
   }
 };
+
+export const getCountries = async (req, res) => {
+  const { searchTerm } = req.query;
+  RegExp.quote = function (str) {
+    return str.replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1");
+  };
+  let regex = new RegExp(RegExp.quote(searchTerm), "gi");
+  try {
+    let countries = await Country.find({ value: regex }).sort({ value: 1 }).limit(5).exec();
+    res.status(200).send({
+      status: "ok",
+      message: countries,
+    });
+  } catch (err) {
+    res.status(500).send({
+      status: "error",
+      message: err.message,
+    });
+  }
+};
+
+export const getCities = async (req, res) => {
+  const { searchTerm } = req.query;
+  RegExp.quote = function (str) {
+    return str.replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1");
+  };
+  let regex = new RegExp(RegExp.quote(searchTerm), "gi");
+  try {
+    let cities = await City.find({ value: regex }).sort({ value: 1 }).limit(5).exec();
+    res.status(200).send({
+      status: "ok",
+      message: cities,
+    });
+  } catch (err) {
+    res.status(500).send({
+      status: "error",
+      message: err.message,
+    });
+  }
+};

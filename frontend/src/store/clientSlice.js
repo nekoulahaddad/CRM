@@ -4,16 +4,19 @@ import { endpoints } from "../api/endpoints";
 export const fetchClients = createAsyncThunk(
   "clients/fetchClients",
   async function ({ page, sort_field, sort_direction, limit, searchTerm }, { rejectWithValue }) {
-    console.log(sort_direction, sort_field);
     let myparams = {
       searchTerm: searchTerm,
       page: page,
       limit: limit,
+      sort_field: sort_field,
+      sort_direction: sort_direction,
     };
+    /*
     if (sort_field && sort_direction) {
       myparams.sort_field = sort_field;
       myparams.sort_direction = sort_direction;
     }
+    */
     try {
       const response = await apiCall.get(endpoints.getclients, {
         params: myparams,
@@ -105,6 +108,5 @@ const clientSlice = createSlice({
     [editClient.rejected]: (state, action) => {},
   },
 });
-export const { changePage } = clientSlice.actions;
 
 export default clientSlice.reducer;

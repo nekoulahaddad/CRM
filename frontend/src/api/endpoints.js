@@ -5,6 +5,7 @@ export const endpoints = {
   getclients: "/client/all",
   getClient: (id) => `/client/get/${id}`,
   deleteClient: (id) => `/client/delete/${id}`,
+  getCountries: "/region/getCountries",
+  getCities: "/region/getCities",
   getOrders: "/order/all",
-  //editTask: (id) => `/edit/${id}`,
 };

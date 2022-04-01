@@ -4,6 +4,13 @@
   grid-template-columns: repeat(4, 1fr);
   column-gap: 40px;
   row-gap: 20px;
+  .searchOption {
+    padding: 1px 23px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    line-height: 35px;
+  }
   .inputWrapper {
     margin-top: 10px;
     display: flex;
