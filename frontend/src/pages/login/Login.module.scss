@@ -73,7 +73,6 @@ $primary-color: #333;
         text-align: center;
       }
       .loginInputContainer {
-        padding-left: 10px;
         margin-bottom: 16px;
         box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.18);
         width: 100%;
@@ -84,6 +83,7 @@ $primary-color: #333;
           margin-top: 8px !important;
         }
         .inputIcon {
+          margin-left: 8px;
           margin-top: 8px;
         }
         .loginInput {
@@ -114,6 +114,7 @@ $primary-color: #333;
         line-height: 18px;
         line-height: 33px;
         color: #ffffff;
+        border-radius: 5px;
       }
       .loginButton {
         text-decoration: none;
