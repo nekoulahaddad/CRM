@@ -3,7 +3,7 @@ import { ReactComponent as Connect } from "assets/Connect.svg";
 import CrmTemplate from "components/crmTemplate/CrmTemplate";
 export default function Partners() {
   const headers = [
-    { title: "ID", dataIndex: "id", width: "97px", sorted: false },
+    { title: "ID", dataIndex: "_id", width: "97px", sorted: false },
     {
       title: "Название организации",
       dataIndex: "name",
@@ -29,7 +29,7 @@ export default function Partners() {
   ];
   const data = [
     {
-      id: "00000234",
+      _id: "00000234",
       name: "ООО “Продукты”",
       shop: "Лента",
       contractNo: "ZZ-2021/01/015 000",
@@ -38,7 +38,7 @@ export default function Partners() {
       status: true,
     },
     {
-      id: "00000235",
+      _id: "00000235",
       name: "ООО “Продукты”",
       shop: "Лента",
       contractNo: "ZZ-2021/01/015 000",
@@ -47,7 +47,7 @@ export default function Partners() {
       status: true,
     },
     {
-      id: "00000236",
+      _id: "00000236",
       name: "ООО “Продукты”",
       shop: "Лента",
       contractNo: "ZZ-2021/01/015 000",

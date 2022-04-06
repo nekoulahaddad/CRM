@@ -25,7 +25,7 @@ export default function Finances() {
   ];
   const data = [
     {
-      id: "00000234",
+      _id: "00000234",
       orderNo: "00000234",
       shop: "Лента",
       client: "Смирнов Владимир",
@@ -35,7 +35,7 @@ export default function Finances() {
       status: "Доставлен",
     },
     {
-      id: "00000235",
+      _id: "00000235",
       orderNo: "00000235",
       shop: "Лента",
       client: "Смирнов Владимир",
@@ -45,7 +45,7 @@ export default function Finances() {
       status: "Доставлен",
     },
     {
-      id: "00000236",
+      _id: "00000236",
       orderNo: "00000236",
       shop: "Лента",
       client: "Смирнов Владимир",

@@ -13,17 +13,20 @@ import OrderInfo from "components/orderInfo/OrderInfo";
 import { useParams } from "react-router-dom";
 import { fetchClient } from "store/clientSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { changePage, changeSortField, changeSortDiection, changeLimit } from "store/filterSlice";
+import { getOrdersByClientId } from "store/orderSlice";
 export default function ClientProfile() {
-  const { client } = useSelector((state) => state.clients);
+  const { page, sort_field, sort_direction } = useSelector((state) => state.filters);
+  const { orders, numberOfPages } = useSelector((state) => state.orders);
   const dispatch = useDispatch();
   let navigate = useNavigate();
   const { id } = useParams();
   const headers = [
-    { title: "№ Заказа", dataIndex: "orderNo", width: "197px", sorted: false },
-    { title: "Дата и время", dataIndex: "date", width: "199px", sorted: false },
-    { title: "Статус", dataIndex: "status", width: "195px", sorted: false },
-    { title: "Магазин", dataIndex: "shop", width: "197px", sorted: false },
-    { title: "Сумма", dataIndex: "price", width: "197px", sorted: false },
+    { title: "№ Заказа", dataIndex: "displayID", width: "197px", sorted: false },
+    { title: "Дата и время", dataIndex: "createdAt", width: "199px", sorted: false },
+    { title: "Статус", dataIndex: "statusValue", width: "195px", sorted: false },
+    { title: "Магазин", dataIndex: "shopName", width: "197px", sorted: false },
+    { title: "Сумма", dataIndex: "sum", width: "197px", sorted: false },
     {
       title: "Кол–во товаров",
       dataIndex: "quantity",
@@ -38,77 +41,29 @@ export default function ClientProfile() {
     },
     {
       title: "Доставка",
-      dataIndex: "deliveryTime",
+      dataIndex: "delivery_time",
       width: "171px",
       sorted: false,
-    },
-  ];
-  const data = [
-    {
-      id: "00000234",
-      orderNo: "564545645641",
-      date: "Конcтантин Константинов",
-      status: "5456564",
-      shop: "mail.ru",
-      price: "445454",
-      quantity: "445454",
-      address: "dsadsad",
-      deliveryTime: "dsadsad",
-    },
-    {
-      id: "00000235",
-      orderNo: "564545645641",
-      date: "Конcтантин Константинов",
-      status: "5456564",
-      shop: "mail.ru",
-      price: "445454",
-      quantity: "445454",
-      address: "dsadsad",
-      deliveryTime: "dsadsad",
-    },
-    {
-      id: "00000236",
-      orderNo: "564545645641",
-      date: "Конcтантин Константинов",
-      status: "5456564",
-      shop: "mail.ru",
-      price: "445454",
-      quantity: "445454",
-      address: "dsadsad",
-      deliveryTime: "dsadsad",
-    },
-    {
-      id: "00000237",
-      orderNo: "564545645641",
-      date: "Конcтантин Константинов",
-      status: "5456564",
-      shop: "mail.ru",
-      price: "445454",
-      quantity: "445454",
-      address: "dsadsad",
-      deliveryTime: "dsadsad",
-    },
-    {
-      id: "00000238",
-      orderNo: "564545645641",
-      date: "Конcтантин Константинов",
-      status: "5456564",
-      shop: "mail.ru",
-      price: "445454",
-      quantity: "445454",
-      address: "dsadsad",
-      deliveryTime: "dsadsad",
     },
   ];
   const props = {
     icon: <People />,
     title: "Клиенты",
   };
-  const componentProps = { headers, data, OrderInfo: <OrderInfo /> };
+  const componentProps = { headers, data: orders, OrderInfo: <OrderInfo /> };
+
   useEffect(() => {
-    console.log(id);
-    dispatch(fetchClient({ id }));
+    return () => {
+      dispatch(changePage(0));
+      dispatch(changeSortField("createdAt"));
+      dispatch(changeSortDiection("asc"));
+      dispatch(changeLimit("10"));
+    };
   }, []);
+  useEffect(() => {
+    dispatch(fetchClient({ id }));
+    dispatch(getOrdersByClientId({ id }));
+  }, [page, sort_direction, sort_field, id]);
   return (
     <div className={styles.wrapper}>
       <SideBar />
@@ -126,7 +81,7 @@ export default function ClientProfile() {
         </div>
         <div className={styles.title}>Заказы:</div>
         <Table componentProps={componentProps} />
-        <Pagination />
+        <Pagination numberOfPages={numberOfPages} />
       </div>
     </div>
   );

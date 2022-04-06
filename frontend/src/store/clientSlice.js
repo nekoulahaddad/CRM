@@ -11,12 +11,6 @@ export const fetchClients = createAsyncThunk(
       sort_field: sort_field,
       sort_direction: sort_direction,
     };
-    /*
-    if (sort_field && sort_direction) {
-      myparams.sort_field = sort_field;
-      myparams.sort_direction = sort_direction;
-    }
-    */
     try {
       const response = await apiCall.get(endpoints.getclients, {
         params: myparams,

@@ -6,7 +6,7 @@ export default function CategoryModeration() {
   const [open, setOpen] = useState(false);
 
   const headers = [
-    { title: "ID", dataIndex: "id", width: "98px", sorted: true },
+    { title: "ID", dataIndex: "_id", width: "98px", sorted: true },
     {
       title: "Название организации",
       dataIndex: "name",
@@ -37,7 +37,7 @@ export default function CategoryModeration() {
   ];
   const data = [
     {
-      id: "00000234",
+      _id: "00000234",
       name: "ООО “Продукты”",
       shop: "Лента",
       category: "Смартфоны и гаджеты",
@@ -46,7 +46,7 @@ export default function CategoryModeration() {
       status: "Одобрено",
     },
     {
-      id: "00000235",
+      _id: "00000235",
       name: "ООО “Продукты”",
       shop: "Лента",
       category: "Смартфоны и гаджеты",
@@ -55,7 +55,7 @@ export default function CategoryModeration() {
       status: "Одобрено",
     },
     {
-      id: "00000236",
+      _id: "00000236",
       name: "ООО “Продукты”",
       shop: "Лента",
       category: "Смартфоны и гаджеты",

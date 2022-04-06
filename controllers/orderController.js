@@ -1,16 +1,16 @@
 import { Order } from "../models/order/order.js";
-import { Customer } from "../models/customers/customer.js";
 import { Shop } from "../models/shop/shop.js";
 import { OrderStatus } from "../models/order/status.js";
 import { Region } from "../models/location/region.js";
 import { ordersData } from "../data/orders.js";
+import { Counter } from "../models/counter/counter.js";
 
 export const insertOrders = async (req, res) => {
   try {
-    const customer = await Customer.findOne();
-    const customerObject = {
-      _id: customer._id,
-      name: customer.name,
+    const Order = await Order.findOne();
+    const OrderObject = {
+      _id: Order._id,
+      name: Order.name,
     };
     const shop = new Shop({
       name: "Auchan",
@@ -41,13 +41,15 @@ export const insertOrders = async (req, res) => {
       _id: region._id,
       value: region.value,
     };
+    const counter = await Counter.findOneAndUpdate({ name: "ordersCounter" }, { $inc: { count: 1 } }, { upsert: true });
 
     const newOrder = new Order({
       ...ordersData,
-      customer: customerObject,
+      Order: OrderObject,
       shop: shopObject,
       status: statusObject,
       region: regionObject,
+      displayID: counter ? ("00000000000000" + counter.count).slice(-14) : "000000000000000",
     });
     console.log(newOrder);
 
@@ -65,9 +67,49 @@ export const insertOrders = async (req, res) => {
 };
 
 export const getOrders = async (req, res) => {
+  let { page, sort_field, sort_direction, limit, searchTerm } = req.query;
+  let orders = null;
+  let countOrders = "";
+  try {
+    if (!searchTerm) {
+      countOrders = await Order.find({}).count();
+      orders = await Order.find({})
+        .limit(limit)
+        .skip(limit * page)
+        .sort({ [sort_field]: sort_direction })
+        .exec();
+    } else {
+      countOrders = await Order.find({ displayID: searchTerm }).count();
+      orders = await Order.find({ displayID: searchTerm })
+        .limit(limit)
+        .skip(limit * page)
+        .sort({ [sort_field]: sort_direction })
+        .exec();
+    }
+    if (!orders) {
+      return res.status(404).send({
+        status: "error",
+        message: "Заказы не найдены",
+      });
+    }
+    res.status(200).send({
+      status: "ok",
+      message: { orders, total_pages: Math.ceil(countOrders / limit) },
+    });
+  } catch (error) {
+    res.status(500).send({
+      status: "error",
+      message: error,
+    });
+  }
+};
+
+export const getOrdersByClientId = async (req, res) => {
+  const { id } = req.params;
   let { page, sort_field, sort_direction, limit } = req.query;
   try {
-    const orders = await Order.find({})
+    const countOrders = await Order.find({}).count();
+    const orders = await Order.find({ "Order._id": id })
       .limit(limit)
       .skip(limit * page)
       .sort({ [sort_field]: sort_direction })
@@ -79,10 +121,9 @@ export const getOrders = async (req, res) => {
         message: "Заказы не найдены",
       });
     }
-    const quantity = orders.length;
     res.status(200).send({
       status: "ok",
-      message: { orders, total_orders_count: quantity },
+      message: { orders, total_orders_count: Math.ceil(countOrders / limit) },
     });
   } catch (error) {
     res.status(500).send({

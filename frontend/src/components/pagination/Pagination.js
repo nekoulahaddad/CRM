@@ -2,11 +2,10 @@ import React from "react";
 import styles from "./Pagination.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { changePage } from "store/filterSlice";
-export default function Pagination() {
+export default function Pagination({ numberOfPages }) {
   const dispatch = useDispatch();
   const { page } = useSelector((state) => state.filters);
-  const { numberOfPages } = useSelector((state) => state.clients);
-
+  console.log(numberOfPages);
   const adjustPage = (amount) => {
     dispatch(changePage(page + amount));
   };

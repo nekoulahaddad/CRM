@@ -3,6 +3,7 @@ const { Schema, Types } = mongoose;
 
 const OrderSchema = new Schema(
   {
+    displayID: { type: String, required: true },
     customer: {
       _id: { type: Types.ObjectId },
       name: { type: String, required: true },
@@ -22,10 +23,12 @@ const OrderSchema = new Schema(
     delivery: { type: Boolean, required: true },
     delivery_sum: { type: Number, required: true },
     delivery_address: { type: Object, required: true },
+    delivery_time: { type: Date, required: true },
     delivery_type: { type: Object, required: true },
+    payment_type: { type: String, required: true },
     sum: { type: Number, required: true },
-    comment: { type: String, required: true },
-    title: { type: String, required: true },
+    comment: { type: String, required: false },
+    title: { type: String, required: false },
     products: { type: Array, required: true },
   },
   {

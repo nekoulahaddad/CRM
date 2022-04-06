@@ -6,7 +6,8 @@ import { fetchClients } from "store/clientSlice";
 import { changePage, changeSearchTerm, changeSortField, changeSortDiection, changeLimit } from "store/filterSlice";
 export default function Clients() {
   const dispatch = useDispatch();
-  const { clients } = useSelector((state) => state.clients);
+  const { clients, numberOfPages } = useSelector((state) => state.clients);
+
   const { limit, page, sort_field, sort_direction, searchTerm } = useSelector((state) => state.filters);
   const headers = [
     { title: "ID", dataIndex: "displayID", width: "105px", sorted: false },
@@ -43,6 +44,7 @@ export default function Clients() {
     data: clients,
     props,
     placeholder,
+    numberOfPages,
   };
   useEffect(() => {
     return () => {

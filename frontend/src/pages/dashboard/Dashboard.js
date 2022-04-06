@@ -16,6 +16,11 @@ export default function Dashboard() {
     info: "Кол-во партнеров",
     percent: -12,
   };
+  const dataProps2 = {
+    title: "7 786",
+    info: "Общее кол-во товаров",
+    percent: 12,
+  };
   const data1 = [...new Array(4)];
   const data2 = [...new Array(2)];
   const data3 = [...new Array(2)];
@@ -35,7 +40,7 @@ export default function Dashboard() {
           <div className={styles.buyersBlock}>
             <div className={styles.headerBlock}>Информация о покупателях:</div>
             {data2.map((element, i) => (
-              <DashboardBlock key={i} props={dataProps} />
+              <DashboardBlock key={i} props={dataProps2} />
             ))}
           </div>
           <div className={styles.subscriptionsBlock}>

@@ -8,4 +8,5 @@ export const endpoints = {
   getCountries: "/region/getCountries",
   getCities: "/region/getCities",
   getOrders: "/order/all",
+  getOrdersByClientID: (id) => `/order/allByClient/${id}`,
 };

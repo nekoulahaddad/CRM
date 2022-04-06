@@ -11,7 +11,7 @@ import * as XLSX from "xlsx";
 import { ExportSheet } from "react-xlsx-sheet";
 
 export default function CrmTemplate({ componentProps }) {
-  const { headers, data, props, placeholder, PopupSubsicriptions, open } = componentProps;
+  const { headers, data, props, placeholder, PopupSubsicriptions, open, numberOfPages } = componentProps;
   const [windowHeight, setWindowHeight] = useState("100%");
   const printTarget = () => {
     let divToPrint = document.getElementById("tableId");
@@ -84,7 +84,7 @@ export default function CrmTemplate({ componentProps }) {
             </div>
           </Printer>
         </div>
-        <Pagination />
+        <Pagination numberOfPages={numberOfPages} />
       </div>
     </div>
   );

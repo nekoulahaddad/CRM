@@ -3,6 +3,7 @@ import styles from "./Login.module.scss";
 import { ReactComponent as Logo } from "../../assets/Logo.svg";
 import { ReactComponent as Message } from "../../assets/Message.svg";
 import { ReactComponent as Lock } from "../../assets/Lock.svg";
+import { ReactComponent as LoginImage } from "../../assets/LoginImage.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "store/authSlice";
@@ -23,38 +24,38 @@ export default function Login() {
   }, [loggedIn]);
 
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.container}>
-        <div className={styles.logo}>
-          <Logo />
+    <div className={styles.mainWrapper}>
+      <div className={styles.imageBlock}>
+        <div className={styles.container}>
+          <div>ZumZak - добро пожаловать</div>
+          <div>в личный кабинет администора!</div>
+          <LoginImage className={styles.loginImage} />
         </div>
-        <div className={styles.error}>{error ? error : null}</div>
-        <div className={styles.titleForm}>Введите почту и пароль</div>
-        <div className={styles.loginInputContainer}>
-          <Message className={styles.inputIcon} />
-          <input
-            type="text"
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Введите почту"
-            className={styles.loginInput}
-          />
-        </div>
-        <div className={styles.loginInputContainer}>
-          <Lock className={styles.inputIcon} />
-          <input
-            type="text"
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Введите пароль"
-            className={styles.loginInput}
-          />
-        </div>
+        <div className={styles.centerCircle}></div>
+      </div>
+      <div className={styles.wrapper}>
+        <div className={styles.container}>
+          <div className={styles.logo}>
+            <Logo />
+          </div>
+          <div className={styles.error}>{error ? error : null}</div>
+          <div className={styles.titleForm}>Введите почту и пароль</div>
+          <div className={styles.loginInputContainer}>
+            <Message className={styles.inputIcon} />
+            <input type="text" onChange={(e) => setEmail(e.target.value)} placeholder="Введите почту" className={styles.loginInput} />
+          </div>
+          <div className={styles.loginInputContainer}>
+            <Lock className={styles.inputIcon} />
+            <input type="password" onChange={(e) => setPassword(e.target.value)} placeholder="Введите пароль" className={styles.loginInput} />
+          </div>
 
-        <div onClick={(e) => handleLogin(e)} className={styles.loginButton}>
-          Войти
+          <div onClick={(e) => handleLogin(e)} className={styles.loginButton}>
+            Войти
+          </div>
+          <Link to="/changepassword" className={styles.forgetPasswordButton}>
+            Забыли пароль? Нажмите здесь!
+          </Link>
         </div>
-        <Link to="/changepassword" className={styles.forgetPasswordButton}>
-          Забыли пароль? Нажмите здесь!
-        </Link>
       </div>
     </div>
   );

@@ -7,19 +7,9 @@ export default function ChartSvg() {
     datasets: [
       {
         label: "# of Votes",
-        data: [200, 300, 400, 500],
-        backgroundColor: [
-          "rgba(0, 161, 223, 1)",
-          "rgba(250, 152, 18, 1)",
-          "rgba(120, 194, 221, 1) ",
-          "rgba(241, 63, 23, 1)",
-        ],
-        borderColor: [
-          "rgba(255, 255, 255, 1)",
-          "rgba(255, 255, 255, 1)",
-          "rgba(255, 255, 255, 1)",
-          "rgba(255, 255, 255, 1)",
-        ],
+        data: [200, 300, 600, 500],
+        backgroundColor: ["rgba(0, 161, 223, 1)", "rgba(250, 152, 18, 1)", "rgba(120, 194, 221, 1) ", "rgba(241, 63, 23, 1)"],
+        borderColor: ["rgba(255, 255, 255, 1)", "rgba(255, 255, 255, 1)", "rgba(255, 255, 255, 1)", "rgba(255, 255, 255, 1)"],
         borderWidth: 1,
         polyline: {
           color: "gray",
@@ -53,8 +43,8 @@ export default function ChartSvg() {
       afterDraw: (chart) => {
         const ctx = chart.chart.ctx;
         //draw sumData in the center
-        const centerX = ctx.canvas.width / 2;
-        const centerY = ctx.canvas.height / 2;
+        const centerX = ctx.canvas.width / 4;
+        const centerY = ctx.canvas.height / 4;
         ctx.font = "16pt Calibri";
         ctx.textAlign = "center";
         ctx.fillStyle = "#C0C0C0";
@@ -64,12 +54,8 @@ export default function ChartSvg() {
         const leftLabelCoordinates = [];
         const rightLabelCoordinates = [];
         const chartCenterPoint = {
-          x:
-            (chart.chartArea.right - chart.chartArea.left) / 2 +
-            chart.chartArea.left,
-          y:
-            (chart.chartArea.bottom - chart.chartArea.top) / 2 +
-            chart.chartArea.top,
+          x: (chart.chartArea.right - chart.chartArea.left) / 2 + chart.chartArea.left,
+          y: (chart.chartArea.bottom - chart.chartArea.top) / 2 + chart.chartArea.top,
         };
         chart.config.data.labels.forEach((label, i) => {
           const meta = chart.getDatasetMeta(0);
@@ -90,14 +76,9 @@ export default function ChartSvg() {
             labelColor = dataset.polyline.labelColor;
           }
 
-          const angle = Math.atan2(
-            centerPoint.y - chartCenterPoint.y,
-            centerPoint.x - chartCenterPoint.x
-          );
-          const point2X =
-            chartCenterPoint.x + Math.cos(angle) * (model.outerRadius + 15);
-          let point2Y =
-            chartCenterPoint.y + Math.sin(angle) * (model.outerRadius + 15);
+          const angle = Math.atan2(centerPoint.y - chartCenterPoint.y, centerPoint.x - chartCenterPoint.x);
+          const point2X = chartCenterPoint.x + Math.cos(angle) * (model.outerRadius + 15);
+          let point2Y = chartCenterPoint.y + Math.sin(angle) * (model.outerRadius + 15);
 
           let suitableY;
           if (point2X < chartCenterPoint.x) {
@@ -132,8 +113,7 @@ export default function ChartSvg() {
           ctx.lineTo(edgePointX, point2Y);
           ctx.stroke();
           //fill custom label
-          const labelAlignStyle =
-            edgePointX < chartCenterPoint.x ? "left" : "right";
+          const labelAlignStyle = edgePointX < chartCenterPoint.x ? "left" : "right";
           const labelX = edgePointX;
           const labelY = point2Y;
           ctx.textAlign = labelAlignStyle;
@@ -162,7 +142,5 @@ export default function ChartSvg() {
       },
     },
   };
-  return (
-    <Doughnut data={data} options={options} plugins={plugins} width="160px" />
-  );
+  return <Doughnut data={data} options={options} plugins={plugins} width="160px" />;
 }
