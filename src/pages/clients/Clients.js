@@ -38,10 +38,37 @@ export default function Clients() {
     icon: <People />,
     title: "Клиенты",
   };
+  const fakeData = [  {
+    _id:1,
+    name: "nekoula",
+    surname: "haddad",
+    displayID:"00000001",
+    patronymic: "hello",
+    birthday: new Date(),
+    createdAt:"17/01/2020",
+    updatedAt:"17/01/2020",
+    phone: "+7 (000) 000–00–00",
+    active:true,
+    email: "klientkonstantinov@mail.ru",
+  },{
+    _id:2,
+    name: "vector",
+    surname: "haddad",
+    displayID:"00000002",
+    patronymic: "hello",
+    birthday: new Date(),
+    createdAt:"17/01/2020",
+    updatedAt:"17/01/2020",
+    phone: "+7 (000) 000–00–00",
+    active:true,
+    email: "klientkonstantinov@mail.ru",
+  },
+]
   const placeholder = "Поиск по номеру телефона и Ф. И. О.";
   const componentProps = {
     headers,
-    data: clients,
+    //data: clients,
+    data: fakeData,
     props,
     placeholder,
     numberOfPages,

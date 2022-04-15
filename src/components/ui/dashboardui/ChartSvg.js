@@ -43,8 +43,8 @@ export default function ChartSvg() {
       afterDraw: (chart) => {
         const ctx = chart.chart.ctx;
         //draw sumData in the center
-        const centerX = ctx.canvas.width / 4;
-        const centerY = ctx.canvas.height / 4;
+        const centerX = ctx.canvas.width / 2;
+        const centerY = ctx.canvas.height / 2;
         ctx.font = "16pt Calibri";
         ctx.textAlign = "center";
         ctx.fillStyle = "#C0C0C0";

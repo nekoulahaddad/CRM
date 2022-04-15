@@ -40,7 +40,7 @@ const authSlice = createSlice({
   initialState: {
     status: null,
     error: null,
-    loggedIn: false,
+    loggedIn: true,
   },
   reducers: {
     checkAuthentication(state, action) {
