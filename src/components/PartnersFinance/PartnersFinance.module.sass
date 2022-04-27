@@ -1,0 +1,123 @@
+.finance
+  width: 100%
+
+.totalWrapper
+  display: flex
+  div
+    margin: 0 24px 0 0
+    &:last-child
+      margin: 0
+
+.title
+  margin: 0 0 20px
+  font-weight: 700
+  font-size: 18px
+  line-height: 22px
+
+.totalCard
+  padding: 20px
+  width: 218px
+  height: 127px
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2)
+  border-radius: 5px
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  align-items: center
+  h4
+    margin: 0
+    font-weight: 700
+    font-size: 18px
+    line-height: 22px
+  p
+    margin: 0
+    font-weight: 700
+    font-size: 24px
+    line-height: 29px
+    color: #EB2316
+
+.filters
+  margin: 20px 0
+  display: flex
+  align-items: center
+  input
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2)
+    border: none
+    appearance: none
+    outline: none
+    cursor: pointer
+    transition: .2s
+    width: 264px
+    height: 33px
+    text-align: center
+    font-weight: 600
+    font-size: 14px
+    line-height: 150%
+    &:hover
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5)
+
+
+.icon
+  margin: 0 20px 0 0
+  width: 33px
+  height: 33px
+  display: flex
+  justify-content: center
+  align-items: center
+  background: #EB2316
+  border-radius: 5px
+
+.inputContainer
+  position: relative
+  svg
+    position: absolute
+    top: 13px
+    right: 14px
+
+.optionsList
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2)
+  border-radius: 5px
+  background: #fff
+  position: absolute
+  top: 37px
+  left: 0
+  padding: 5px 0
+  margin: 0
+  list-style-type: none
+  width: 100%
+  transition: .2s
+  transform: translateY(50px)
+  visibility: hidden
+  opacity: 0
+  &_active
+    transform: translateY(0)
+    visibility: visible
+    opacity: 1
+
+.listItem
+  padding: 0 0 0 10px
+  height: 21px
+  font-weight: 600
+  font-size: 14px
+  line-height: 150%
+  transition: .2s
+  cursor: pointer
+  &_active
+    color: #78C2DD
+  &:hover
+    background: #e3e3e3
+
+.financeTable
+
+.financeTableRow
+  margin: 0 0 10px
+  height: 33px
+  width: 100%
+  display: grid
+  grid-template-columns: 80px repeat(6, 1fr)
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2)
+  border-radius: 5px
+  div
+    display: flex
+    justify-content: center
+    align-items: center

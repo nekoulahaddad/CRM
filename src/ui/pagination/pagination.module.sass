@@ -1,0 +1,43 @@
+@import 'src/styles/variables'
+
+$disabled: #919EAB
+$gray-border: #DFE3E8
+$gray-arrow: #C4CDD5
+
+.pagination
+	display: flex
+	justify-content: center
+	align-items: center
+	margin-top: 20px
+	margin-bottom: 40px
+
+	&-mobile
+		margin-bottom: 20px
+
+.square
+	width: 32px
+	height: 32px
+	display: flex
+	align-items: center
+	justify-content: center
+	border: 2px solid $gray-border
+	background: $white
+	cursor: pointer
+
+	&:not(:last-child)
+		margin-right: 8px
+
+	i
+		color: $gray-arrow
+
+	&.disabled
+		border-color: $disabled
+		background: $disabled
+		cursor: default
+
+	&.active
+		border-color: $blue
+		color: $blue
+
+	&.ellipsis
+		cursor: default

@@ -17,6 +17,7 @@ import Subscriptions from "pages/subscriptions/Subscriptions";
 import ClientProfile from "pages/clientProfile/ClientProfile";
 import CategoryModeration from "pages/categoryModeration/CategoryModeration";
 import { refreshToken, checkToken } from "store/authSlice";
+import PartnerProfile from "./pages/partnerProfile/PartnerProfile";
 function App() {
   return (
     <div className="App">
@@ -77,6 +78,14 @@ function App() {
             element={
               <RequireAuth redirectTo="/">
                 <ClientProfile />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/partners/profile/:id"
+            element={
+              <RequireAuth redirectTo="/">
+                <PartnerProfile />
               </RequireAuth>
             }
           />

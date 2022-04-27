@@ -1,0 +1,69 @@
+@import 'src/styles/variables'
+
+.modal-overlay
+	position: fixed
+	top: 0
+	background: #00000050
+	z-index: 10000
+	overflow: auto
+	width: 100vw
+	height: 100vh
+
+
+.modal
+	position: absolute
+	background: $white
+	overflow: auto
+	outline: none
+	padding: 20px
+	box-shadow: $shadow-primary
+	top: 50%
+	left: 50%
+	transform: translate(-50%, -50%)
+	min-height: 200px
+	display: flex
+	z-index: 10000
+
+	.close
+		position: absolute
+		right: 15px
+		top: 15px
+
+
+.modal-body
+	display: flex
+	flex-direction: column
+	justify-content: center
+	width: 100%
+
+	&__text
+		flex: 1
+		align-items: center
+		display: flex
+		justify-content: center
+		text-align: center
+
+	&__confirm-buttons
+		margin-top: 20px
+
+
+.full
+	width: 100%
+	height: 100%
+	top: 0
+	bottom: 0
+	left: 0
+	transform: none
+	box-shadow: none
+
+.sm
+	max-width: 400px
+	width: 90%
+
+.md
+	max-width: 900px
+	width: 90%
+
+.lg
+	max-width: 1200px
+	width: 90%

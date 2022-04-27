@@ -1,0 +1,51 @@
+@import 'src/styles/variables'
+
+.drawer
+	position: fixed
+	z-index: 9999
+
+	& > *
+		transition: transform .5s cubic-bezier(.78, .14, .15, .86), opacity .5s cubic-bezier(.78, .14, .15, .86), box-shadow .5s cubic-bezier(.78, .14, .15, .86)
+
+	&-left,
+	&-right
+		top: 0
+		height: 100%
+
+		.drawer-content-wrapper, .drawer-content
+			height: 100%
+
+	&-right
+		right: 0
+
+		.drawer-content-wrapper
+			right: 0
+
+	&-left
+		left: 0
+
+		.drawer-content-wrapper
+			left: 0
+
+	&.drawer-open
+		width: 100%
+
+		.drawer-content-wrapper
+			box-shadow: -2px 0 8px rgb(0 0 0 / 15%)
+
+		.drawer-mask
+			opacity: .3
+			height: 100%
+
+	.drawer-mask
+		background: #000
+		opacity: 0
+		width: 100%
+		height: 0
+		position: absolute
+		top: 0
+		left: 0
+
+	.drawer-content-wrapper
+		position: absolute
+		background: $white

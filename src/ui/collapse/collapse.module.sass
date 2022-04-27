@@ -1,0 +1,71 @@
+@import 'src/styles/variables'
+
+.panel
+	&:not(:last-child)
+		margin-bottom: 10px
+
+	&.active
+		.panel__content
+			visibility: visible
+			opacity: 1
+
+		&.arrow-moving
+			.panel__options
+				&:before
+					transform: rotate(0deg)
+
+				> .arrow
+					transform: rotate(180deg)
+
+	&__label
+		position: relative
+		display: flex
+		align-items: center
+		justify-content: space-between
+		width: 100%
+		text-align: left
+		font-weight: 700
+		font-size: 14px
+		font-family: inherit
+		transition: color 0.2s linear
+		background-color: $white
+		box-shadow: $shadow-primary
+		min-height: 33px
+		padding: 0 10px
+		cursor: pointer
+		z-index: 1
+		color: $deep-black
+
+		&:disabled
+			color: $gray
+
+	&__options
+		display: flex
+		align-items: center
+		margin-left: auto
+
+		.arrow
+			margin-left: 7px
+			will-change: transform
+			transition: transform 0.3s linear
+
+	&__additing-options
+		display: flex
+
+		i
+			margin-left: 7px
+
+	&__inner
+		overflow: hidden
+		will-change: height
+		transition: height 0.4s cubic-bezier(0.65, 0.05, 0.36, 1)
+		box-shadow: $shadow-primary
+
+	&__content
+		color: black
+		opacity: 0
+		visibility: hidden
+		transition: opacity 0.3s linear 0.18s
+		background-color: $white
+		padding: 10px
+		font-weight: 500

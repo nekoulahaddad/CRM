@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap')
+@import './fonts/icons/style.css'
+@import 'reset'
+@import 'extends'
+@import 'variables'
+@import 'bootstrap'
+@import 'src/components/ui/select/select.module'
+@import 'src/components/ui/controlMenu/drawer.module'
+@import 'src/components/ui/recharts/recharts.module'
+@import 'src/components/ui/modal/modal.module'
+
+.overlay
+	&.active
+		&:before
+			position: fixed
+			opacity: 0.3
+
+	&:before
+		content: ''
+		position: static
+		top: 0
+		left: 0
+		right: 0
+		bottom: 0
+		background: $deep-black
+		z-index: 12
+		width: 100vw
+		height: 100vh
+		transition: opacity .3s linear
+		opacity: 0
+
+
+.shadow
+	&-primary
+		box-shadow: $shadow-primary
+
+
+.result-tinymce
+	ul, ol
+		margin-left: 30px
+
+
+//tinymce
+.rich-text-container
+	&.error
+		> span
+			transition: all .3s
+			color: $danger
+
+		.tox-tinymce
+			border: 1px solid $danger !important
+			box-shadow: $shadow-danger !important
+
+.tox-tinymce
+	margin-top: 10px
+	border: 1px solid transparent !important
+	box-shadow: $shadow-primary !important
+	transition: all .3s
+
+	&:hover
+		box-shadow: $shadow-secondary !important
+
+
+//toasty
+.Toastify
+	&__progress-bar--success
+		background: $blue
+
+	&__toast-body
+		color: $deep-black

@@ -1,0 +1,72 @@
+.label
+  position: relative
+  margin: 0 0 10px
+  &_file
+    width: 220px
+  h4
+    margin: 0 0 10px
+    font-weight: 600
+    font-size: 16px
+    line-height: 20px
+    font-feature-settings: 'liga' off
+  input,
+  textarea
+    width: 100%
+    height: 33px
+    display: flex
+    padding: 0 10px
+    appearance: none
+    outline: none
+    border: none
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2)
+    transition: .3s
+    font-weight: 600
+    font-size: 12px
+    line-height: 15px
+    &:focus
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5)
+  input[type='file']
+    position: absolute
+    left: -9999px
+  textarea
+    height: 144px
+    padding: 10px
+  svg
+    position: absolute
+    bottom: 6px
+    right: 6px
+
+.fileInputVisible
+  width: 144px
+  height: 104px
+  margin: 0 0 10px
+  background: url("../../assets/LoadPhoto.svg")
+  border: 1px dashed #FFFFFF
+  cursor: pointer
+
+.openingHours
+  width: 100%
+  &_row
+    display: flex
+    align-items: center
+    margin: 0 0 10px 0
+    &:last-child
+      margin: 0
+  span
+    width: 55px
+    margin: 0 10px 0 0
+    font-weight: 600
+    font-size: 12px
+    line-height: 15px
+  input
+    margin: 0 20px 0 0
+    width: 114px
+    height: 33px
+    appearance: none
+    outline: none
+    border: none
+    text-align: center
+
+.textAreaSmall
+  margin: 10px 0 0
+  height: 83px!important

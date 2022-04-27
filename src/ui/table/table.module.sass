@@ -1,0 +1,91 @@
+@import 'src/styles/variables'
+
+.table
+	width: 100%
+	max-width: 1620px
+
+	&-wrapper
+		overflow-x: auto
+		padding: 2px
+		margin: -2px
+
+		&::-webkit-scrollbar
+			width: 0
+
+	.thead + .tbody
+		margin-top: 10px
+
+	.thead
+		.td
+			font-weight: 700
+
+	.tr
+		display: inline-flex
+		align-items: center
+		height: 33px
+		background: $white
+		box-shadow: $shadow-primary
+
+		&:not(:last-child)
+			margin-bottom: 10px
+
+	.td
+		font-size: 14px
+		text-align: center
+		padding: 4px 5px
+
+		&:first-child
+			padding-left: 10px
+
+		&:last-child
+			padding-right: 10px
+
+		&.buttons, &.ellipsis
+			display: flex
+			justify-content: flex-end
+
+		&.ellipsis
+			height: 33px
+			background: $white
+			border-left: 2px solid $gray-background
+
+			&:last-child
+				position: -webkit-sticky
+				position: sticky
+				right: -2px
+
+			&.active
+				z-index: 1
+				position: absolute
+				right: 8px
+
+		&.view-input
+			padding: 3px 10px
+
+			input
+				height: 29px
+				text-align: center
+				background: #F6F6F6
+
+
+.blue
+	color: $blue
+
+.green
+	color: $green-light
+
+.peach
+	color: $peach
+
+.red
+	color: $red
+
+
+.text-medium
+	font-weight: 500
+
+
+.overflow
+	text-overflow: ellipsis
+	white-space: nowrap
+	overflow: hidden

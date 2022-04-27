@@ -1,0 +1,71 @@
+$medium: 1590px;
+.wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.container {
+  margin: 43px 143px 0px 73px;
+  width: 100%;
+  @media screen and (max-width: $medium) {
+    margin: 43px 20px 0px 20px;
+  }
+  .status {
+    display: flex;
+    flex-direction: row;
+    margin-top: 25px;
+    .description {
+      margin-top: 4px;
+      margin-left: 16px;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 130%;
+      font-feature-settings: "liga" off;
+      color: #c0c0c0;
+    }
+  }
+  .title {
+    margin-top: 20px;
+    margin-right: 15px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: start;
+    font-feature-settings: "liga" off;
+    color: #464646;
+  }
+}
+.controlSection {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+}
+.downloadLink {
+  text-decoration: none;
+}
+.back {
+  cursor: pointer;
+  margin-top: 20px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 150%;
+  font-feature-settings: "liga" off;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 384px 1fr;
+  grid-gap: 20px;
+}
+
+.leftCol {
+  width: 100%;
+}
+
+.contacts {
+  width: 100%;
+}
