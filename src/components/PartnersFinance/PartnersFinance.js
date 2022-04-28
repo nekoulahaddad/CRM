@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from './PartnersFinance.module.sass'
 import FinanceTotal from "./FinanceTotal"
-import FinanceFilters from "./FinanceFilters";
-import FinanceTable from "./FinanceTable";
+import FinanceFilters from "./FinanceFilters"
+import FinanceTable from "./FinanceTable"
 
 function PartnersFinance() {
   return (

@@ -9,9 +9,11 @@ function FinanceTable() {
 
       </div>
       <FinanceTableRow head />
-      <FinanceTableRow />
-      <FinanceTableRow />
-      <FinanceTableRow />
+      <FinanceTableRow data={true} fakePaid={true} />
+      <FinanceTableRow data={true} fakePaid={true} />
+      <FinanceTableRow data={true} fakePaid={false} />
+      <FinanceTableRow data={true} fakePaid={true} />
+      <FinanceTableRow data={true} fakePaid={false} />
       <FinanceTableRow total />
       <div>
 

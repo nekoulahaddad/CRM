@@ -1,7 +1,16 @@
 import React from 'react'
 import styles from './PartnersFinance.module.sass'
 
-function FinanceTableRow({ head, total, data }) {
+function FinanceTableRow({ head, total, data, fakePaid }) {
+  const checkIsPaid = {
+    style: fakePaid
+      ? styles.financeTableRow_status_paid
+      : styles.financeTableRow_status_unpaid,
+    text: fakePaid
+      ? 'Оплачен'
+      : 'Не оплачен'
+  }
+
   const headRow =
     <div className={styles.financeTableRow}>
       <div>№</div>
@@ -24,9 +33,21 @@ function FinanceTableRow({ head, total, data }) {
       <div>Прибыль total</div>
     </div>
 
+  const infoRow =
+    <div className={`${styles.financeTableRow} ${styles.financeTableRow_info}`}>
+      <div>1</div>
+      <div className={styles.financeTableRow_name}>Иванов Иван Иванович</div>
+      <div>Москва и М.О</div>
+      <div>10.11.2021</div>
+      <div className={checkIsPaid.style}>{ checkIsPaid.text }</div>
+      <div>2 668 ₽</div>
+      <div> 668 ₽</div>
+    </div>
+
   return (
     <>
       { head && headRow }
+      { data && infoRow }
       { total && totalRow }
     </>
   )
