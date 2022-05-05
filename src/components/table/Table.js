@@ -7,15 +7,16 @@ import SwitchBotton from "components/ui/bottons/SwitchBotton";
 import { deleteClient } from "store/clientSlice";
 import { useDispatch } from "react-redux";
 import TableHead from "./TableHead";
+import { ROUTES } from "../../constants/ROUTES";
 
 export default function Table({ componentProps }) {
-
   const [openOrder, setOpenOrder] = useState("");
   const [openedOptions, setOpenedOptions] = useState("");
   const [checkedRows, setCheckedRows] = useState([]);
   const { headers, data, props, PopupSubsicriptions, OrderInfo, setOpen } = componentProps;
   const dispatch = useDispatch();
   const location = useLocation();
+  const { CLIENTS, PARTNERS, PROFILE } = ROUTES;
 
   const handlePopUp = (id) => {
     openedOptions === id ? setOpenedOptions("") : setOpenedOptions(id);
@@ -64,7 +65,7 @@ export default function Table({ componentProps }) {
                   </td>
 
                   {headers.map((header, i) => (
-                    <React.Fragment key={i * Math.random()}>
+                    <React.Fragment key={i}>
                       {header.dataIndex === "options" || header.dataIndex === "information" ? (
                         <td onClick={() => handlePopUp(record._id)} className={styles.ThreeDots}>
                           <ThreeDots />
@@ -81,9 +82,9 @@ export default function Table({ componentProps }) {
                                   <React.Fragment>
                                     <Link
                                       className={styles.tableLink}
-                                      to={location.pathname === '/partners'
-                                        ? `/partners/profile/${record._id}`
-                                        : `/clients/profile/${record._id}`
+                                      to={location.pathname === PARTNERS
+                                        ? `${PARTNERS + PROFILE + '/'}${record._id}`
+                                        : `${CLIENTS + PROFILE + '/'}${record._id}`
                                       }>
                                       Перейти в профиль
                                     </Link>

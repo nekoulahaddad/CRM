@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './CategoriesAndGoods.module.sass'
+import { ReactComponent as ArrowRight } from "assets/ArrowRight.svg"
 import { ReactComponent as CategoryRowIcon } from "assets/CategoryRowIcon.svg"
 import { ReactComponent as Edit } from "assets/Edit.svg"
 import { ReactComponent as Trash } from "assets/Trash.svg"
@@ -15,6 +16,7 @@ function CategoriesAndGoodsRow({ isFavourites, isVisible }) {
       </div>
 
       <div className={styles.actions}>
+        <ArrowRight />
         <StarFavourites isFavourites={isFavourites} />
         <EyeIcon isVisible={isVisible} />
         <Edit />

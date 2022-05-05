@@ -2,11 +2,14 @@ $medium: 1590px;
 .wrapper {
   display: flex;
   flex-direction: row;
+  width: 100%;
 }
 
 .container {
   margin: 43px 143px 0px 73px;
   width: 100%;
+  //width: 1634px;
+  //max-width: 1634px;
   @media screen and (max-width: $medium) {
     margin: 43px 20px 0px 20px;
   }
@@ -60,6 +63,7 @@ $medium: 1590px;
   display: grid;
   grid-template-columns: 384px 1fr;
   grid-gap: 20px;
+  max-width: 1634px;
 }
 
 .leftCol {

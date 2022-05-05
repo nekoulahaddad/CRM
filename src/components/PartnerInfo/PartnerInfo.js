@@ -6,9 +6,23 @@ import PartnerRightColHeading from "../PartnerRightColHeading/PartnerRightColHea
 import PartnerInfoContainer from "../PartnerInfoContainer/PartnerInfoContainer"
 import { useSelector } from "react-redux"
 import PartnersTwoColumns from "../PartnersTwoColumns/PartnersTwoColumns"
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function PartnerInfo({ data }) {
   const { sideNav } = useSelector(state => state.partners)
+
+  const handleSave = () =>{
+    toast.success('🦄 Info successfully saved!', {
+      position: "bottom-right",
+      autoClose: 1100,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
 
   return (
     <PartnerInfoContainer>
@@ -45,7 +59,7 @@ function PartnerInfo({ data }) {
             type={'text'}
             title={'Адрес:'} />
 
-          <FormButton type={'submit'} text={'Сохранить'} />
+          <FormButton type={'submit'} text={'Сохранить'} onClick={handleSave} />
         </div>
 
         <div className={styles.rightCol}>
@@ -74,6 +88,18 @@ function PartnerInfo({ data }) {
             title={'Краткое описание:'} />
         </div>
       </PartnersTwoColumns>
+
+      <ToastContainer
+        position="bottom-right"
+        autoClose={1100}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </PartnerInfoContainer>
   )
 }

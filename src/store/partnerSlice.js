@@ -13,7 +13,6 @@ const partnerSlice = createSlice({
     },
 
     changeSection(state, action) {
-      console.log(action)
       state.topNav = action.payload
     }
   }

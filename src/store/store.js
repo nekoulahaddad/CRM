@@ -5,6 +5,7 @@ import authReducer from "./authSlice";
 import filterSlice from "./filterSlice";
 import regionSlice from "./regionSlice";
 import orderSlice from "./orderSlice";
+import rightSidePopupSlice from './rightSidePopusSlice';
 
 export default configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export default configureStore({
     filters: filterSlice,
     regions: regionSlice,
     orders: orderSlice,
+    rightSidePopup: rightSidePopupSlice,
   },
 });

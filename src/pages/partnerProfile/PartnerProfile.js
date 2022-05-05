@@ -6,10 +6,6 @@ import Header from "../../components/header/Header";
 import { ReactComponent as Connect } from "assets/Connect.svg";
 import { ReactComponent as ArrowBack } from "assets/ArrowBackBigWhite.svg";
 import { useNavigate, useParams } from "react-router-dom";
-import ClientForm from "../../components/clientForm/ClientForm";
-import SwitchBotton from "../../components/ui/bottons/SwitchBotton";
-import Table from "../../components/table/Table";
-import Pagination from "../../components/pagination/Pagination";
 import OrderInfo from "../../components/orderInfo/OrderInfo";
 import Navigation from "../../components/Navigation/Navigation";
 import PartnerInfo from "../../components/PartnerInfo/PartnerInfo";
@@ -61,29 +57,56 @@ function PartnerProfile() {
   const fakeData = [
     {
       _id: "00000234",
-      name: "ООО “Продукты”",
+      name: "ООО “Продукты“",
       shop: "Лента",
       contractNo: "ZZ-2021/01/015 000",
       date: "12.08.2020, 14:00",
-      phone: "+7 (000) 000–00–00",
+      phone: "+7 (495) 999–25–00",
       status: true,
     },
     {
       _id: "00000235",
-      name: "ООО “Продукты”",
-      shop: "Лента",
+      name: "ООО “Еда“",
+      shop: "Ашан",
       contractNo: "ZZ-2021/01/015 000",
       date: "12.08.2020, 14:00",
-      phone: "+7 (000) 000–00–00",
+      phone: "+7 (499) 788–00–95",
       status: true,
     },
     {
       _id: "00000236",
-      name: "ООО “Продукты”",
+      name: "ООО “Деликатесы”",
+      shop: "Перекресток",
+      contractNo: "ZZ-2021/01/015 000",
+      date: "12.08.2020, 14:00",
+      phone: "+7 (495) 770–30–40",
+      status: true,
+    },
+    {
+      _id: "00000237",
+      name: "ООО “Деликатесы”",
+      shop: "Перекресток",
+      contractNo: "ZZ-2021/01/015 000",
+      date: "12.08.2020, 14:00",
+      phone: "+7 (495) 770–30–40",
+      status: true,
+    },
+    {
+      _id: "00000238",
+      name: "ООО “Продукты“",
       shop: "Лента",
       contractNo: "ZZ-2021/01/015 000",
       date: "12.08.2020, 14:00",
-      phone: "+7 (000) 000–00–00",
+      phone: "+7 (495) 999–25–00",
+      status: true,
+    },
+    {
+      _id: "00000239",
+      name: "ООО “Еда“",
+      shop: "Ашан",
+      contractNo: "ZZ-2021/01/015 000",
+      date: "12.08.2020, 14:00",
+      phone: "+7 (499) 788–00–95",
       status: true,
     },
   ];

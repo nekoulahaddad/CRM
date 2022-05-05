@@ -45,11 +45,11 @@ function FinanceTableRow({ head, total, data, fakePaid }) {
     </div>
 
   return (
-    <>
+    <React.Fragment>
       { head && headRow }
       { data && infoRow }
       { total && totalRow }
-    </>
+    </React.Fragment>
   )
 }
 

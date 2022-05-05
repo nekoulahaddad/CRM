@@ -5,9 +5,6 @@ import FinanceTableRow from "./FinanceTableRow"
 function FinanceTable() {
   return (
     <div className={styles.financeTable}>
-      <div>
-
-      </div>
       <FinanceTableRow head />
       <FinanceTableRow data={true} fakePaid={true} />
       <FinanceTableRow data={true} fakePaid={true} />
@@ -15,9 +12,6 @@ function FinanceTable() {
       <FinanceTableRow data={true} fakePaid={true} />
       <FinanceTableRow data={true} fakePaid={false} />
       <FinanceTableRow total />
-      <div>
-
-      </div>
     </div>
   )
 }

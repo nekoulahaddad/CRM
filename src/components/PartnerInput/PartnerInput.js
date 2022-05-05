@@ -5,19 +5,19 @@ import { ReactComponent as Lock } from "assets/LockGray.svg"
 function PartnerInput({ id, type, title, value, openingHours, textArea, lock }) {
 
   const textInput =
-    <>
+    <React.Fragment>
       <input id={id} type={type} defaultValue={value} />
       { lock && <Lock/> }
-    </>
+    </React.Fragment>
 
   const fileInput =
-    <>
+    <React.Fragment>
       <input id={id} type={type} />
       <div className={styles.fileInputVisible} />
-    </>
+    </React.Fragment>
 
   const openingHoursInput =
-    <>
+    <React.Fragment>
       <div className={styles.openingHours}>
         <div className={styles.openingHours_row}>
           <span>Пн - Пт</span>
@@ -31,12 +31,10 @@ function PartnerInput({ id, type, title, value, openingHours, textArea, lock }) 
           <input type="text"/>
         </div>
       </div>
-    </>
+    </React.Fragment>
 
   const textAreaInput =
-    <>
-      <textarea />
-    </>
+    <textarea />
 
   return (
     <label

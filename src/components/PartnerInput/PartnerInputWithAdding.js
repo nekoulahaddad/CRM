@@ -37,20 +37,19 @@ function PartnerInputWithAdding(
 
   const setCurrentData = inputType => {
     switch (inputType) {
-      case 'email': return fakeEmails
-        break
-      case 'phone': return fakePhones
-        break
-      case 'text': return fakeDescription
-        break
-      default: return ''
-        break
+      case 'email':
+        return fakeEmails
+      case 'phone':
+        return fakePhones
+      case 'text':
+        return fakeDescription
+      default:
+        return null
     }
   }
 
   const [data, setData] = useState(setCurrentData(type))
   const [formValues, setFormValues] = useState({})
-  console.log(formValues)
 
   const handleButtonClick = () => {
     if (type === 'text') return null
@@ -79,7 +78,7 @@ function PartnerInputWithAdding(
   }
 
   return (
-    <>
+    <React.Fragment>
 
       {
         type === 'email' && data.map((email, i) => (
@@ -100,6 +99,7 @@ function PartnerInputWithAdding(
             <div className={styles.descriptionRow}>{ phone.description }</div>
             <div onClick={handleTrashClick} className={styles.iconTrash}>
               <Trash />
+
             </div>
           </div>
         ))
@@ -131,7 +131,7 @@ function PartnerInputWithAdding(
       <div style={{margin: '0 0 10px'}}>
         <FormButton text={buttonText} onClick={handleButtonClick} />
       </div>
-    </>
+    </React.Fragment>
   )
 }
 
