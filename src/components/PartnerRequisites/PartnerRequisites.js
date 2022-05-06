@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useForm } from "../../hooks/useForm"
 import PartnerInfoContainer from "../PartnerInfoContainer/PartnerInfoContainer"
 import PartnerRightColHeading from "../PartnerRightColHeading/PartnerRightColHeading"
 import PartnersTwoColumns from "../PartnersTwoColumns/PartnersTwoColumns"
@@ -6,9 +7,16 @@ import PartnerInput from "../PartnerInput/PartnerInput"
 import { useSelector } from "react-redux"
 import styles from "../PartnerInfo/PartnerInfo.module.sass"
 import FormButton from "../ui/bottons/FormButton"
+import { fakeRequisitest } from "../../constants/fakeDatas/fakeRequisites"
 
 function PartnerRequisites() {
-  const { sideNav } = useSelector(state => state.partners)
+  const { sideNav, currentShop, currentRequisites } = useSelector(state => state.partners)
+  const { formValues, setFormValues, handleChange } = useForm()
+
+  useEffect(() => {
+    const currentReq = fakeRequisitest.find(r => r.shop_id === currentShop._id)
+    setFormValues({ ...currentReq })
+  }, [])
 
   return (
     <PartnerInfoContainer>
@@ -31,18 +39,21 @@ function PartnerRequisites() {
             title={'ФИО руководителя:'} />
 
           <PartnerInput
+            value={formValues.INN}
             type={'text'}
-            id={'inn-partner'}
+            id={'INN'}
             title={'ИНН:'} />
 
           <PartnerInput
+            value={formValues.KPP}
             type={'text'}
-            id={'kpp-partner'}
+            id={'KPP'}
             title={'КПП:'} />
 
           <PartnerInput
+            value={formValues.OGRN}
             type={'text'}
-            id={'ogrn-partner'}
+            id={'OGRN'}
             title={'ОГРН/ОГРНИП:'} />
 
           <FormButton text={'Сохранить'} />
@@ -55,23 +66,27 @@ function PartnerRequisites() {
             title={'Юридический адрес:'} />
 
           <PartnerInput
+            value={formValues.tax}
             type={'text'}
-            id={'tax-partner'}
+            id={'tax'}
             title={'Налогообложение:'} />
 
           <PartnerInput
+            value={formValues.BIK}
             type={'text'}
-            id={'bik-partner'}
+            id={'BIK'}
             title={'БИК:'} />
 
           <PartnerInput
+            value={formValues.bankName}
             type={'text'}
-            id={'bankName-partner'}
+            id={'bankName'}
             title={'Название банка:'} />
 
           <PartnerInput
+            value={formValues.checkingAccount}
             type={'text'}
-            id={'checkingAccount-partner'}
+            id={'checkingAccount'}
             title={'Расчетный счёт:'} />
         </div>
       </PartnersTwoColumns>

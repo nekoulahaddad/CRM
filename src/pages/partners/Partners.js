@@ -1,7 +1,11 @@
 import React from "react";
 import { ReactComponent as Connect } from "assets/Connect.svg";
 import CrmTemplate from "components/crmTemplate/CrmTemplate";
+import { useSelector } from "react-redux";
+
 export default function Partners() {
+  const { shops } = useSelector(state => state.partners)
+
   const headers = [
     { title: "ID", dataIndex: "_id", width: "97px", sorted: false },
     {
@@ -27,62 +31,7 @@ export default function Partners() {
     { title: "Статус", dataIndex: "status", width: "188px", sorted: false },
     { title: "Опции", dataIndex: "options", width: "215px", sorted: false },
   ];
-  const data = [
-    {
-      _id: "00000234",
-      name: "ООО “Продукты“",
-      shop: "Лента",
-      contractNo: "ZZ-2021/01/015 000",
-      date: "12.08.2020, 14:00",
-      phone: "+7 (495) 999–25–00",
-      status: true,
-    },
-    {
-      _id: "00000235",
-      name: "ООО “Еда“",
-      shop: "Ашан",
-      contractNo: "ZZ-2021/01/015 000",
-      date: "12.08.2020, 14:00",
-      phone: "+7 (499) 788–00–95",
-      status: true,
-    },
-    {
-      _id: "00000236",
-      name: "ООО “Деликатесы”",
-      shop: "Перекресток",
-      contractNo: "ZZ-2021/01/015 000",
-      date: "12.08.2020, 14:00",
-      phone: "+7 (495) 770–30–40",
-      status: true,
-    },
-    {
-      _id: "00000237",
-      name: "ООО “Деликатесы”",
-      shop: "Перекресток",
-      contractNo: "ZZ-2021/01/015 000",
-      date: "12.08.2020, 14:00",
-      phone: "+7 (495) 770–30–40",
-      status: true,
-    },
-    {
-      _id: "00000238",
-      name: "ООО “Продукты“",
-      shop: "Лента",
-      contractNo: "ZZ-2021/01/015 000",
-      date: "12.08.2020, 14:00",
-      phone: "+7 (495) 999–25–00",
-      status: true,
-    },
-    {
-      _id: "00000239",
-      name: "ООО “Еда“",
-      shop: "Ашан",
-      contractNo: "ZZ-2021/01/015 000",
-      date: "12.08.2020, 14:00",
-      phone: "+7 (499) 788–00–95",
-      status: true,
-    },
-  ];
+
   const props = {
     icon: <Connect />,
     title: "Партнеры",
@@ -90,7 +39,7 @@ export default function Partners() {
   const placeholder = "Поиск по магазину...";
   const componentProps = {
     headers,
-    data,
+    data: shops,
     props,
     placeholder,
   };

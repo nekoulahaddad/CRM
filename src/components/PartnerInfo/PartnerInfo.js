@@ -1,18 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './PartnerInfo.module.sass'
+import { useForm } from "../../hooks/useForm"
 import PartnerInput from "../PartnerInput/PartnerInput"
 import FormButton from "../ui/bottons/FormButton"
 import PartnerRightColHeading from "../PartnerRightColHeading/PartnerRightColHeading"
 import PartnerInfoContainer from "../PartnerInfoContainer/PartnerInfoContainer"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
+import { changePartnerInfo, updateCurrentShop } from "../../store/partnerSlice"
 import PartnersTwoColumns from "../PartnersTwoColumns/PartnersTwoColumns"
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-function PartnerInfo({ data }) {
-  const { sideNav } = useSelector(state => state.partners)
+function PartnerInfo() {
+  const { formValues, setFormValues, handleChange } = useForm()
+  const { sideNav, currentShop, shops } = useSelector(state => state.partners)
+  const dispatch = useDispatch()
 
-  const handleSave = () =>{
+  const handleSave = evt =>{
+    evt.preventDefault()
+    dispatch(changePartnerInfo(formValues))
+    dispatch(updateCurrentShop(formValues))
+
     toast.success('🦄 Info successfully saved!', {
       position: "bottom-right",
       autoClose: 1100,
@@ -24,70 +32,82 @@ function PartnerInfo({ data }) {
     });
   }
 
+  useEffect(() => {
+    // setFormValues({ ...data })
+    setFormValues({ ...currentShop })
+  }, [currentShop, shops])
+
   return (
     <PartnerInfoContainer>
       <PartnerRightColHeading text={sideNav} />
 
-      <PartnersTwoColumns>
-        <div className={styles.leftCol}>
-          <PartnerInput
-            id={'file-partner'}
-            type={'file'}
-            title={'Загрузите свой логотип:'} />
+      <form onSubmit={handleSave}>
+        <PartnersTwoColumns>
+          <div className={styles.leftCol}>
+            <PartnerInput
+              id={'file'}
+              type={'file'}
+              title={'Загрузите свой логотип:'} />
 
-          <PartnerInput
-            lock
-            id={'store-partner'}
-            type={'text'}
-            value={data.shop}
-            title={'Название магазина:'} />
+            <PartnerInput
+              lock
+              id={'shop'}
+              type={'text'}
+              value={formValues.shop}
+              title={'Название магазина:'} />
 
-          <PartnerInput
-            lock
-            id={'country-partner'}
-            type={'text'}
-            title={'Страна:'} />
+            <PartnerInput
+              lock
+              value={formValues.country}
+              id={'country'}
+              type={'text'}
+              title={'Страна:'} />
 
-          <PartnerInput
-            lock
-            id={'city-partner'}
-            type={'text'}
-            title={'Город:'} />
+            <PartnerInput
+              lock
+              value={formValues.city}
+              id={'city'}
+              type={'text'}
+              title={'Город:'} />
 
-          <PartnerInput
-            id={'address-partner'}
-            type={'text'}
-            title={'Адрес:'} />
+            <PartnerInput
+              onChange={handleChange}
+              value={formValues.address}
+              id={'address'}
+              type={'text'}
+              title={'Адрес:'} />
 
-          <FormButton type={'submit'} text={'Сохранить'} onClick={handleSave} />
-        </div>
+            <FormButton type={'submit'} text={'Сохранить'} />
+          </div>
 
-        <div className={styles.rightCol}>
-          <PartnerInput
-            id={'phone-partner'}
-            type={'phone'}
-            value={data.phone}
-            title={'Контактный телефон пользователя:'} />
+          <div className={styles.rightCol}>
+            <PartnerInput
+              value={formValues.phone}
+              id={'phone'}
+              type={'phone'}
+              title={'Контактный телефон пользователя:'} />
 
-          <PartnerInput
-            lock
-            id={'storeCategory-partner'}
-            type={'text'}
-            title={'Категория магазина:'} />
+            <PartnerInput
+              lock
+              id={'category'}
+              type={'text'}
+              title={'Категория магазина:'} />
 
-          <PartnerInput
-            openingHours
-            id={'openingHours-partner'}
-            type={'text'}
-            title={'Время работы:'} />
+            <PartnerInput
+              workingHours={formValues.workingHours}
+              id={'workingHours'}
+              type={'text'}
+              title={'Время работы:'} />
 
-          <PartnerInput
-            textArea
-            id={'description-partner'}
-            type={'text'}
-            title={'Краткое описание:'} />
-        </div>
-      </PartnersTwoColumns>
+            <PartnerInput
+              textArea
+              value={formValues.description}
+              id={'description'}
+              type={'text'}
+              title={'Краткое описание:'} />
+          </div>
+        </PartnersTwoColumns>
+      </form>
 
       <ToastContainer
         position="bottom-right"
