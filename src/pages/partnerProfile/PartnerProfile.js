@@ -12,7 +12,7 @@ import PartnerInfo from "../../components/PartnerInfo/PartnerInfo";
 import CrmTopNavigation from "../../components/CrmTopNavigation/CrmTopNavigation";
 import TopNavigationButton from "../../components/ui/bottons/TopNavigationButton/TopNavigationButton";
 import { useDispatch, useSelector } from "react-redux";
-import { changeSection, setCurrentShop } from "../../store/partnerSlice";
+import {changeSection, setCurrentShop, setCurrentRequisites, changeRightCol} from "../../store/partnerSlice";
 import PartnerContacts from "../../components/PartnerContacts/PartnerContacts";
 import PartnerRequisites from "../../components/PartnerRequisites/PartnerRequisites";
 import PartnersQnA from "../../components/PartnersQnA/PartnersQnA";
@@ -70,9 +70,9 @@ function PartnerProfile() {
   }
 
   useEffect(() => {
-    // setShop(shops.find(item => item._id === id))
-    // dispatch(setCurrentShop(shops.find(item => item._id === id)))
+    dispatch(changeRightCol('Основная информация'))
     dispatch(setCurrentShop(id))
+    dispatch(setCurrentRequisites(id))
   }, [id])
 
   return (
@@ -99,7 +99,7 @@ function PartnerProfile() {
             <div className={styles.contacts}>
               { sideNav === 'Основная информация' && <PartnerInfo /> }
               { sideNav === 'Контакты' && <PartnerContacts data={currentShop} /> }
-              { sideNav === 'Реквизиты' && <PartnerRequisites data={currentShop} /> }
+              { sideNav === 'Реквизиты' && <PartnerRequisites /> }
               { sideNav === 'Вопрос - ответ' && <PartnersQnA data={currentShop} /> }
             </div>
           </div>

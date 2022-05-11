@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import { useForm } from "../../hooks/useForm"
 import PartnerInfoContainer from "../PartnerInfoContainer/PartnerInfoContainer"
 import PartnerRightColHeading from "../PartnerRightColHeading/PartnerRightColHeading"
@@ -7,16 +8,15 @@ import PartnerInput from "../PartnerInput/PartnerInput"
 import { useSelector } from "react-redux"
 import styles from "../PartnerInfo/PartnerInfo.module.sass"
 import FormButton from "../ui/bottons/FormButton"
-import { fakeRequisitest } from "../../constants/fakeDatas/fakeRequisites"
 
 function PartnerRequisites() {
   const { sideNav, currentShop, currentRequisites } = useSelector(state => state.partners)
   const { formValues, setFormValues, handleChange } = useForm()
+  const { id } = useParams()
 
   useEffect(() => {
-    const currentReq = fakeRequisitest.find(r => r.shop_id === currentShop._id)
-    setFormValues({ ...currentReq })
-  }, [])
+    setFormValues({ ...currentRequisites })
+  }, [id])
 
   return (
     <PartnerInfoContainer>
@@ -24,18 +24,21 @@ function PartnerRequisites() {
       <PartnersTwoColumns>
         <div className={styles.leftCol}>
           <PartnerInput
+            value={currentShop.contractNo}
             type={'text'}
             id={'contract-partner'}
             title={'Номер договора:'} />
 
           <PartnerInput
+            value={currentShop.name}
             type={'text'}
-            id={'organization-partner'}
+            id={'organization'}
             title={'Название организации:'} />
 
           <PartnerInput
+            value={currentRequisites.director}
             type={'text'}
-            id={'fio-partner'}
+            id={'director'}
             title={'ФИО руководителя:'} />
 
           <PartnerInput
@@ -61,8 +64,9 @@ function PartnerRequisites() {
 
         <div className={styles.rightCol}>
           <PartnerInput
+            value={formValues.urAddress}
             type={'text'}
-            id={'urAddress-partner'}
+            id={'urAddress'}
             title={'Юридический адрес:'} />
 
           <PartnerInput

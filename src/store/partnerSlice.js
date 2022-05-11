@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fakeShops } from "../constants/fakeDatas/fakeShops";
+import { fakeRequisites } from '../constants/fakeDatas/fakeRequisites';
 
 const partnerSlice = createSlice({
   name: "partners",
@@ -7,6 +8,7 @@ const partnerSlice = createSlice({
     sideNav: "Основная информация",
     topNav: "Контакты",
     shops: fakeShops,
+    requisites: fakeRequisites,
     currentShop: {},
     currentRequisites: {},
   },
@@ -36,7 +38,7 @@ const partnerSlice = createSlice({
     },
 
     setCurrentRequisites(state, action) {
-      state.currentRequisites = action.payload
+      state.currentRequisites = state.requisites.find(r => r.shop_id === action.payload)
     },
 
     updateCurrentRequisites(state, action) {
