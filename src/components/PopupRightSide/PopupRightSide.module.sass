@@ -1,0 +1,284 @@
+.wrapper
+  position: fixed
+  top: 0
+  right: 0
+  width: 100vw
+  height: 100vh
+  visibility: hidden
+  opacity: 0
+  transition: .3s
+  &_active
+    visibility: visible
+    opacity: 1
+
+.overlay
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  background: #0006
+  z-index: -1
+  visibility: hidden
+  opacity: 0
+  transition: .3s
+  cursor: pointer
+  &_active
+    visibility: visible
+    opacity: 1
+
+.content
+  padding: 20px
+  position: absolute
+  top: 0
+  right: -110%
+  width: 789px
+  height: 100%
+  background: #fff
+  overflow: auto
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5)
+  transition: .3s
+  animation-delay: .2s
+  &::-webkit-scrollbar
+    width: 8px
+  &::-webkit-scrollbar-thumb
+    width: 8px
+    background: #78C2DD
+  &_active
+    right: 0
+
+.heading
+  height: 75px
+  width: 100%
+  border-bottom: 2px solid #C5E8F4
+  display: flex
+  justify-content: space-between
+  align-items: center
+  h3
+    margin: 0
+    font-weight: 700
+    font-size: 18px
+    line-height: 30px
+    color: #78C2DD
+
+.headingTop
+  display: flex
+  align-items: center
+  svg
+    margin: 0 10px 0 0
+
+.subtitle
+  margin: 10px 0
+  font-weight: 700
+  font-size: 16px
+  line-height: 30px
+  color: #000000
+
+.description
+  margin: 0 0 10px
+  font-weight: 600
+  font-size: 14px
+  line-height: 17px
+  color: rgba(0, 0, 0, 0.3)
+
+.closeIcon
+  cursor: pointer
+
+.searchForm
+  width: 100%
+  height: 33px
+  display: flex
+  justify-content: space-between
+  align-items: center
+
+.input
+  display: flex
+  align-items: center
+  padding: 0 9px
+  appearance: none
+  border: none
+  outline: none
+  height: 30px
+  width: 100%
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2)
+  transition: .3s
+  &_width_half
+    width: calc( 100% - 141px )
+  &::placeholder
+    font-weight: 600
+    font-size: 14px
+    line-height: 150%
+    color: #C0C0C0
+  &:focus
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5)
+
+.textarea
+  padding: 10px
+  height: 132px
+  &::placeholder
+    font-weight: 600
+    font-size: 14px
+    line-height: 150%
+    color: #C0C0C0
+
+.categories
+  margin: 10px 0 0
+  padding: 0 0 10px
+  width: 100%
+  display: grid
+  grid-template-columns: repeat(4, 1fr)
+  grid-gap: 10px
+
+.divider
+  margin: 10px 0 0
+  border-bottom: 2px solid #C5E8F4
+
+.categoryColumn
+  padding: 0
+  margin: 0
+  list-style-type: none
+  height: 417px
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2)
+
+.categoryItem
+  display: flex
+  justify-content: center
+  align-items: center
+  height: 44px
+  transition: .3s
+  &:hover
+    background: rgba(120, 194, 221, 0.5)
+    .categoryItemInner
+      border-bottom: 2px solid transparent
+
+.categoryItemInner
+  width: 92%
+  height: 100%
+  display: flex
+  align-items: center
+  justify-content: space-between
+  border-bottom: 2px solid #F7F7F7
+
+.categoryItemLeft
+  display: flex
+  align-items: center
+  svg
+    margin: 0 4px 0 0
+  p
+    max-width: 120px
+    margin: 0
+    font-weight: 500
+    font-size: 14px
+    line-height: 17px
+    overflow: hidden
+    white-space: nowrap
+    text-overflow: ellipsis
+
+.addNewCategorySubtitle
+  margin: 10px 0
+  font-weight: 700
+  font-size: 16px
+  line-height: 30px
+  color: #78C2DD
+
+.newCategoryPhotoAndNaming,
+.bannersContainer,
+.slidersContainer,
+.bannersSquares
+  display: grid
+  grid-gap: 21px
+  grid-template-columns: repeat(2, 1fr)
+  //div
+  //  width: 100%
+  //  display: flex
+  //  flex-direction: column
+
+.newCategoryColumn
+  width: 100%
+
+.newCategoryLabelContainer
+  margin: 10px 0
+  display: flex
+  align-items: center
+  height: 35px
+  &_sb
+    justify-content: space-between
+  svg
+    margin: 0 0 0 10px
+
+.newCategoryLabel
+  margin: 0
+  font-weight: 700
+  font-size: 16px
+  line-height: 30px
+
+.addPhotoSmall,
+.addPhotoLarge,
+.addPhotoSquare
+  margin: 10px 0
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2)
+
+.addPhotoSmall
+  margin: 0 0 10px
+  width: 110px
+  height: 110px
+
+.addPhotoLarge
+  margin: 10px 0
+  width: 100%
+  height: 190px
+  display: flex
+  &_mob
+    height: 110px
+  svg
+    margin: 0 0 10px
+  span
+    padding: 0 17px
+    text-align: center
+    font-weight: 600
+    font-size: 14px
+    line-height: 17px
+    color: rgba(0, 0, 0, 0.3)
+
+.addPhotoSquare
+  width: 288px
+  height: 246px
+
+.mostSearchedContainer
+  list-style-type: none
+  padding: 0
+  margin: 10px 0 0
+  padding: 0 0 10px
+  display: grid
+  grid-gap: 10px
+  grid-template-columns: repeat(2, 1fr)
+  border-bottom: 2px solid #C5E8F4
+
+.mostSearchedItem
+  width: 100%
+  height: 33px
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2)
+  padding: 0 10px
+  display: flex
+  align-items: center
+  justify-content: space-between
+  span
+    font-weight: 600
+    font-size: 14px
+    line-height: 150%
+
+.titleSeoContainer
+  display: flex
+  align-items: center
+  svg
+    margin: 0 0 0 10px
+
+.bannersContainer
+  margin: 10px 0 0
+
+.urlContainer
+  grid-column: 1 / 4

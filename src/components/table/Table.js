@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./Table.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ReactComponent as ThreeDots } from "assets/ThreeDots.svg";
-import { ReactComponent as UPSort } from "assets/UPSort.svg";
-import { ReactComponent as DownSort } from "assets/DownSort.svg";
 import PopupOptions from "components/ui/popupOptions/PopupOptions";
 import SwitchBotton from "components/ui/bottons/SwitchBotton";
-import { changeSortField, changeSortDiection } from "store/filterSlice";
 import { deleteClient } from "store/clientSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import TableHead from "./TableHead";
+import { ROUTES } from "../../constants/ROUTES";
+
 export default function Table({ componentProps }) {
   const [openOrder, setOpenOrder] = useState("");
   const [openedOptions, setOpenedOptions] = useState("");
   const [checkedRows, setCheckedRows] = useState([]);
   const { headers, data, props, PopupSubsicriptions, OrderInfo, setOpen } = componentProps;
   const dispatch = useDispatch();
+  const location = useLocation();
+  const { CLIENTS, PARTNERS, PROFILE } = ROUTES;
 
   const handlePopUp = (id) => {
     openedOptions === id ? setOpenedOptions("") : setOpenedOptions(id);
@@ -23,8 +25,11 @@ export default function Table({ componentProps }) {
   const handleOrderPopUp = (id) => {
     openOrder !== "" ? setOpenOrder("") : setOpenOrder(id);
   };
+
   const handleCheckBoxOne = (checked, id) => {
-    checked ? setCheckedRows((prevState) => [...prevState, id]) : setCheckedRows((prevState) => [...prevState].filter((item) => item !== id));
+    checked
+      ? setCheckedRows((prevState) => [...prevState, id])
+      : setCheckedRows((prevState) => [...prevState].filter((item) => item !== id));
   };
 
   const handleCheckBoxAll = (checked) => {
@@ -36,38 +41,18 @@ export default function Table({ componentProps }) {
       <div onClick={handlePopUp} className={styles.cover}></div>
       <table className={openOrder !== "" ? styles.widthFlex : ""} id="tableId">
         <tbody>
-          <tr>
-            <th className={styles.boxInputContainer}>
-              <input className={styles.boxInput} onClick={(e) => handleCheckBoxAll(e.target.checked)} type="checkbox" />
-            </th>
-            {headers.map((header, i) => (
-              <th style={{ width: header.width }} key={header.title}>
-                {header.title}
-                {header.sorted ? (
-                  <div className={styles.sortIcon}>
-                    <UPSort
-                      onClick={() => {
-                        dispatch(changeSortField(header.dataIndex));
-                        dispatch(changeSortDiection("asc"));
-                      }}
-                      className={styles.sortUp}
-                    />
-                    <DownSort
-                      onClick={() => {
-                        dispatch(changeSortField(header.dataIndex));
-                        dispatch(changeSortDiection("desc"));
-                      }}
-                      className={styles.sortDown}
-                    />
-                  </div>
-                ) : null}
-              </th>
-            ))}
-          </tr>
-          {data &&
+          <TableHead
+            headers={headers}
+            data={data}
+            handleCheckBoxAll={handleCheckBoxAll}
+          />
+
+          {
+            data &&
             data.map((record) => (
               <React.Fragment key={record._id}>
                 <tr className={OrderInfo ? styles.curser : ""}>
+
                   <td className={styles.boxInputContainer}>
                     <label>
                       <input
@@ -78,6 +63,7 @@ export default function Table({ componentProps }) {
                       />
                     </label>
                   </td>
+
                   {headers.map((header, i) => (
                     <React.Fragment key={i}>
                       {header.dataIndex === "options" || header.dataIndex === "information" ? (
@@ -94,7 +80,12 @@ export default function Table({ componentProps }) {
                                   </React.Fragment>
                                 ) : (
                                   <React.Fragment>
-                                    <Link className={styles.tableLink} to={`/clients/profile/${record._id}`}>
+                                    <Link
+                                      className={styles.tableLink}
+                                      to={location.pathname === PARTNERS
+                                        ? `${PARTNERS + PROFILE + '/'}${record._id}`
+                                        : `${CLIENTS + PROFILE + '/'}${record._id}`
+                                      }>
                                       Перейти в профиль
                                     </Link>
                                     <div onClick={() => dispatch(deleteClient(record._id))}>Удалить пользователя</div>
@@ -117,7 +108,8 @@ export default function Table({ componentProps }) {
                       )}
                     </React.Fragment>
                   ))}
-                  {PopupSubsicriptions && openedOptions === record._id ? PopupSubsicriptions : null}
+
+                  { PopupSubsicriptions && openedOptions === record._id ? PopupSubsicriptions : null }
                 </tr>
 
                 {OrderInfo && openOrder === record._id ? (
@@ -128,7 +120,9 @@ export default function Table({ componentProps }) {
                   </tr>
                 ) : null}
               </React.Fragment>
-            ))}
+            ))
+          }
+
         </tbody>
       </table>
     </div>

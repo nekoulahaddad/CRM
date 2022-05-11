@@ -17,66 +17,78 @@ import Subscriptions from "pages/subscriptions/Subscriptions";
 import ClientProfile from "pages/clientProfile/ClientProfile";
 import CategoryModeration from "pages/categoryModeration/CategoryModeration";
 import { refreshToken, checkToken } from "store/authSlice";
+import PartnerProfile from "./pages/partnerProfile/PartnerProfile";
+import { ROUTES } from "./constants/ROUTES";
+
 function App() {
+
   return (
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/changepassword" element={<ChangePassword />} />
+          <Route path={ROUTES.MAIN} element={<Login />} />
+          <Route path={ROUTES.CHANGE_PASSWORD} element={<ChangePassword />} />
           <Route
-            path="/clients"
+            path={ROUTES.CLIENTS}
             element={
-              <RequireAuth redirectTo="/">
+              <RequireAuth redirectTo={ROUTES.MAIN}>
                 <Clients />
               </RequireAuth>
             }
           />
           <Route
-            path="/partners"
+            path={ROUTES.PARTNERS}
             element={
-              <RequireAuth redirectTo="/">
+              <RequireAuth redirectTo={ROUTES.MAIN}>
                 <Partners />
               </RequireAuth>
             }
           />
           <Route
-            path="/finances"
+            path={ROUTES.FINANCES}
             element={
-              <RequireAuth redirectTo="/">
+              <RequireAuth redirectTo={ROUTES.MAIN}>
                 <Finances />
               </RequireAuth>
             }
           />
           <Route
-            path="/dashboard"
+            path={ROUTES.DASHBOARD}
             element={
-              <RequireAuth redirectTo="/">
+              <RequireAuth redirectTo={ROUTES.MAIN}>
                 <Dashboard />
               </RequireAuth>
             }
           />
           <Route
-            path="/subscriptions"
+            path={ROUTES.SUBSCRIPTIONS}
             element={
-              <RequireAuth redirectTo="/">
+              <RequireAuth redirectTo={ROUTES.MAIN}>
                 <Subscriptions />
               </RequireAuth>
             }
           />
           <Route
-            path="/moderation"
+            path={ROUTES.MODERATION}
             element={
-              <RequireAuth redirectTo="/">
+              <RequireAuth redirectTo={ROUTES.MAIN}>
                 <CategoryModeration />
               </RequireAuth>
             }
           />
           <Route
-            path="/clients/profile/:id"
+            path={ROUTES.DYNAMIC_CLIENT_ID}
             element={
-              <RequireAuth redirectTo="/">
+              <RequireAuth redirectTo={ROUTES.MAIN}>
                 <ClientProfile />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path={ROUTES.DYNAMIC_PARTNER_ID}
+            element={
+              <RequireAuth redirectTo={ROUTES.MAIN}>
+                <PartnerProfile />
               </RequireAuth>
             }
           />

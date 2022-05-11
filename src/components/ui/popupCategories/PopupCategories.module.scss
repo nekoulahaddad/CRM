@@ -1,11 +1,17 @@
 .wrapper {
   position: absolute;
   width: 788px;
+  height: 100vh;
   right: 0;
-  top: 0px;
+  top: -100%;
+  overflow: scroll;
   background: #ffffff;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
+  transition: .3s;
+  &_active {
+    top: 0;
+  }
   .container {
     margin: 6px 19px 69px 20px;
     .section {

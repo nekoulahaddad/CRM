@@ -49,7 +49,8 @@ export default function CrmTemplate({ componentProps }) {
 
   const ids = ["1"];
   return (
-    <div style={open ? { height: windowHeight } : null} className={styles.wrapper}>
+    // <div style={open ? { height: windowHeight } : null} className={styles.wrapper}>
+    <div className={styles.wrapper}>
       <SideBar />
       <div className={styles.container}>
         <Header props={props} />

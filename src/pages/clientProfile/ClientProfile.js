@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import SideBar from "components/sideBar/SideBar";
 import styles from "./ClientProfile.module.scss";
 import Header from "components/header/Header";
@@ -48,34 +48,40 @@ export default function ClientProfile() {
 
     },
   ];
+
   const fakeData = [
-    {displayID:"00000001",
-    createdAt:"17/01/2020",
-    statusValue:"доставлен",
-    shopName:"Ашан",
-    sum:"5500",
-    quantity:"2",
-    delivery_time:"17/01/2020",
-    address:"Москва"
-  },
-  {displayID:"00000002",
-  createdAt:"17/01/2020",
-  statusValue:"доставлен",
-  shopName:"Адидас",
-  sum:"5500",
-  quantity:"2",
-  delivery_time:"17/01/2020",
-  address:"Москва"
-}
+    {
+      displayID:"00000001",
+      createdAt:"17/01/2020",
+      statusValue:"доставлен",
+      shopName:"Ашан",
+      sum:"5500",
+      quantity:"2",
+      delivery_time:"17/01/2020",
+      address:"Москва"
+    },
+    {
+      displayID:"00000002",
+      createdAt:"17/01/2020",
+      statusValue:"доставлен",
+      shopName:"Адидас",
+      sum:"5500",
+      quantity:"2",
+      delivery_time:"17/01/2020",
+      address:"Москва"
+    }
   ]
+
   const props = {
     icon: <People />,
     title: "Клиенты",
   };
-  const componentProps = { headers, 
+  const componentProps = {
+    headers,
     //data: orders
     data:fakeData,
-     OrderInfo: <OrderInfo /> };
+    OrderInfo: <OrderInfo />
+  };
 
   useEffect(() => {
     return () => {

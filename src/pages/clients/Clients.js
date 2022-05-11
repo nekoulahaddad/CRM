@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { ReactComponent as People } from "assets/People.svg";
 import CrmTemplate from "components/crmTemplate/CrmTemplate";
 import { useDispatch, useSelector } from "react-redux";
@@ -62,7 +62,19 @@ export default function Clients() {
     phone: "+7 (000) 000–00–00",
     active:true,
     email: "klientkonstantinov@mail.ru",
-  },
+  },{
+    _id:3,
+    name: "Sergey",
+    surname: "Mashin",
+    displayID:"00000003",
+    patronymic: "hello",
+    birthday: new Date(),
+    createdAt:"28/12/2021",
+    updatedAt:"29/12/2021",
+    phone: "+7 (951) 888–40–27",
+    active:true,
+    email: "vanillaen@mail.ru",
+  }
 ]
   const placeholder = "Поиск по номеру телефона и Ф. И. О.";
   const componentProps = {
