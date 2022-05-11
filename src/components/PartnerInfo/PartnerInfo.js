@@ -32,6 +32,10 @@ function PartnerInfo() {
     });
   }
 
+  const handleWorkingHoursChange = () => {
+
+  }
+
   useEffect(() => {
     // setFormValues({ ...data })
     setFormValues({ ...currentShop })
@@ -82,6 +86,7 @@ function PartnerInfo() {
 
           <div className={styles.rightCol}>
             <PartnerInput
+              onChange={handleChange}
               value={formValues.phone}
               id={'phone'}
               type={'phone'}
@@ -94,6 +99,7 @@ function PartnerInfo() {
               title={'Категория магазина:'} />
 
             <PartnerInput
+              onChange={handleChange}
               workingHours={formValues.workingHours}
               id={'workingHours'}
               type={'text'}
@@ -101,6 +107,7 @@ function PartnerInfo() {
 
             <PartnerInput
               textArea
+              onChange={handleChange}
               value={formValues.description}
               id={'description'}
               type={'text'}
