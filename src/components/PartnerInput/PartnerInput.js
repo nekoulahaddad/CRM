@@ -27,14 +27,31 @@ function PartnerInput({ id, type, title, value, onChange, workingHours, textArea
       <div className={styles.openingHours}>
         <div className={styles.openingHours_row}>
           <span>Пн - Пт</span>
-          <input defaultValue={workingHours && workingHours.weekdays.open} id={id} name={id} type="text"/>
-          <input defaultValue={workingHours && workingHours.weekdays.close} id={id} name={id} type="text"/>
+          <input
+            onChange={onChange}
+            defaultValue={workingHours && workingHours.weekdays.open}
+            id={id}
+            name={id}
+            type="text"/>
+          <input
+            defaultValue={workingHours && workingHours.weekdays.close}
+            id={id}
+            name={id}
+            type="text"/>
         </div>
 
         <div className={styles.openingHours_row}>
           <span>Сб - Вс</span>
-          <input defaultValue={workingHours && workingHours.weekends.open} id={id} name={id} type="text"/>
-          <input defaultValue={workingHours && workingHours.weekends.close} id={id} name={id} type="text"/>
+          <input
+            defaultValue={workingHours && workingHours.weekends.open}
+            id={id}
+            name={id}
+            type="text"/>
+          <input
+            defaultValue={workingHours && workingHours.weekends.close}
+            id={id}
+            name={id}
+            type="text"/>
         </div>
       </div>
     </React.Fragment>
