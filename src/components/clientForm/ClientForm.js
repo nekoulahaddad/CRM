@@ -10,8 +10,8 @@ export default function ClientForm() {
   const { client } = useSelector((state) => state.clients);
   const { countries, cities } = useSelector((state) => state.regions);
   const dispatch = useDispatch();
-  const [name, setName] = useState("");
-  const [surname, setSurname] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [birthday, setBirthday] = useState("");
@@ -24,15 +24,15 @@ export default function ClientForm() {
     {
       title: "Имя",
       type: "text",
-      value: name,
-      handler: (value) => setName(value),
+      value: firstName,
+      handler: (value) => setFirstName(value),
       searchable: false,
     },
     {
       title: "Фамилия   ",
       type: "text",
-      value: surname,
-      handler: (value) => setSurname(value),
+      value: lastName,
+      handler: (value) => setLastName(value),
       searchable: false,
     },
     {
@@ -84,14 +84,14 @@ export default function ClientForm() {
       searchable: false,
     },
   ];
-
   useEffect(() => {
-    setName(client.name);
-    setSurname(client.surname);
+    setFirstName(client.firstName);
+    setLastName(client.lastName);
     setBirthday(client.birthday);
     setEmail(client.email);
     setPhone(client.phone);
     setGender(client.gender);
+    setCity(client.city && client.city.name);
   }, [client]);
 
   return (
@@ -127,10 +127,10 @@ export default function ClientForm() {
                         className={styles.searchOption}
                         onClick={() => {
                           input.resetHandler();
-                          input.handler(option.value);
+                          input.handler(option.name);
                         }}
                       >
-                        {option.value}
+                        {option.name}
                       </div>
                     ))}
                 </PopUpSearch>

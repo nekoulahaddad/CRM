@@ -11,7 +11,7 @@ export default function Clients() {
   const { limit, page, sort_field, sort_direction, searchTerm } = useSelector((state) => state.filters);
   const headers = [
     { title: "ID", dataIndex: "displayID", width: "105px", sorted: false },
-    { title: "Ф. И. О.", dataIndex: "name", width: "240px", sorted: false },
+    { title: "Ф. И. О.", dataIndex: "firstName", width: "240px", sorted: false },
     {
       title: "Номер телефона",
       dataIndex: "phone",
@@ -79,8 +79,8 @@ export default function Clients() {
   const placeholder = "Поиск по номеру телефона и Ф. И. О.";
   const componentProps = {
     headers,
-    //data: clients,
-    data: fakeData,
+    data: clients,
+    //data: fakeData,
     props,
     placeholder,
     numberOfPages,

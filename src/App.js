@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect } from "react";
 import "./App.css";
 import Login from "./pages/login/Login";
@@ -98,11 +99,11 @@ function App() {
   );
 }
 
-function RequireAuth({ children, redirectTo }) {
+function RequireAuth({ children , redirectTo }) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(checkToken()).then((result) => {
-      if (result.payload.message === "Токен истёк") {
+      if (result.payload.status === "error") {
         dispatch(refreshToken());
       }
     });

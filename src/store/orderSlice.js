@@ -16,16 +16,19 @@ export const getOrdersByClientId = createAsyncThunk(
         params: myparams,
       });
       const filteredData = response.data.message.orders.map((order) => {
+        const quantityAll = order.products.reduce((prev,curr,i,arr) => {
+          return prev + parseInt(curr.quantity) 
+        },0)
         return {
           ...order,
           shopName: order.shop.name,
-          statusValue: order.status.value,
-          quantity: order.products.length,
-          address: `${order.delivery_address.city} ${order.delivery_address.address}`,
-          deliveryType: order.delivery_type.type,
+          statusValue: order.statusOrder.title,
+          quantity: quantityAll,
+          address: order.deliveryAddress,
+          deliveryType: order.deliveryType,
         };
       });
-      return { filteredData, numberOfPages: response.data.message.total_orders_count };
+      return { filteredData, numberOfPages: response.data.message.totalPages };
     } catch (err) {
       return rejectWithValue(err.response.data);
     }
@@ -34,7 +37,7 @@ export const getOrdersByClientId = createAsyncThunk(
 
 export const getOrders = createAsyncThunk(
   "orders/getOrders",
-  async function ({ page, sort_field, sort_direction, limit, searchTerm, id }, { rejectWithValue }) {
+  async function ({ page, sort_field, sort_direction, limit, searchTerm}, { rejectWithValue }) {
     let myparams = {
       searchTerm: searchTerm,
       page: page,
@@ -43,10 +46,20 @@ export const getOrders = createAsyncThunk(
       sort_direction: sort_direction,
     };
     try {
-      const response = await apiCall.get(endpoints.getOrders(), {
+      const response = await apiCall.get(endpoints.getOrders, {
         params: myparams,
       });
-      return response.data.message;
+      const filteredData = response.data.message.orders.map((order) => {
+        return {
+          ...order,
+          shopName: order.shop.name,
+          statusValue: order.statusOrder.title,
+          address: order.deliveryAddress,
+          deliveryType: order.deliveryType,
+          clientName: `${order.client.firstName} ${order.client.lastName}`
+        };
+      });
+      return { filteredData, numberOfPages: response.data.message.totalPages };
     } catch (err) {
       return rejectWithValue(err.response.data);
     }
@@ -80,7 +93,8 @@ const orderSlice = createSlice({
     },
     [getOrders.fulfilled]: (state, action) => {
       state.status = "resolved";
-      state.orders = action.payload.orders;
+      state.orders = action.payload.filteredData;
+      state.numberOfPages = action.payload.numberOfPages;
     },
     [getOrders.rejected]: (state, action) => {
       state.status = "rejected";

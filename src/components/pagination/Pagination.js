@@ -5,7 +5,6 @@ import { changePage } from "store/filterSlice";
 export default function Pagination({ numberOfPages }) {
   const dispatch = useDispatch();
   const { page } = useSelector((state) => state.filters);
-  console.log(numberOfPages);
   const adjustPage = (amount) => {
     dispatch(changePage(page + amount));
   };

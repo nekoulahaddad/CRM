@@ -1,27 +1,32 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { ReactComponent as Database } from "assets/Database.svg";
 import CrmTemplate from "components/crmTemplate/CrmTemplate";
 import OrderInfo from "components/orderInfo/OrderInfo";
-
+import { useDispatch, useSelector } from "react-redux";
+import { changePage, changeSortField, changeSortDiection, changeLimit,changeSearchTerm } from "store/filterSlice";
+import { getOrders } from "store/orderSlice";
 export default function Finances() {
+  const { page, sort_field, sort_direction, limit, searchTerm } = useSelector((state) => state.filters);
+  const { orders, numberOfPages } = useSelector((state) => state.orders);
+  const dispatch = useDispatch();
   const headers = [
     {
       title: "№ Заказа",
-      dataIndex: "orderNo",
+      dataIndex: "displayID",
       width: "176.5px",
       sorted: false,
     },
-    { title: "Магазин", dataIndex: "shop", width: "185px", sorted: false },
-    { title: "Клиент", dataIndex: "client", width: "298px", sorted: false },
-    { title: "Сумма", dataIndex: "price", width: "158px", sorted: false },
+    { title: "Магазин", dataIndex: "shopName", width: "185px", sorted: false },
+    { title: "Клиент", dataIndex: "clientName", width: "298px", sorted: false },
+    { title: "Сумма", dataIndex: "sum", width: "158px", sorted: false },
     {
       title: "Адрес доставки",
       dataIndex: "address",
       width: "330px",
       sorted: false,
     },
-    { title: "Дата и время", dataIndex: "date", width: "240px", sorted: true },
-    { title: "Статус", dataIndex: "status", width: "172px", sorted: true },
+    { title: "Дата и время", dataIndex: "createdAt", width: "240px", sorted: true },
+    { title: "Статус", dataIndex: "statusValue", width: "172px", sorted: true },
   ];
   const data = [
     {
@@ -64,11 +69,23 @@ export default function Finances() {
   const placeholder = "Поиск по номеру заказа...";
   const componentProps = {
     headers,
-    data,
+    data:orders,
     props,
     placeholder,
     OrderInfo: <OrderInfo />,
   };
-
+  useEffect(() => {
+    return () => {
+      dispatch(changePage(0));
+      dispatch(changeSearchTerm(""));
+      dispatch(changeSortField("createdAt"));
+      dispatch(changeSortDiection("asc"));
+      dispatch(changeLimit("10"));
+    };
+  }, []);
+  useEffect(() => {
+    console.log("dsd")
+    dispatch(getOrders({ limit, page, sort_direction, sort_field, searchTerm }));
+  }, [limit, page, sort_direction, sort_field, searchTerm]);
   return <CrmTemplate componentProps={componentProps} />;
 }

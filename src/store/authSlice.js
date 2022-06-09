@@ -29,7 +29,6 @@ export const refreshToken = createAsyncThunk(
 export const checkToken = createAsyncThunk(
   "auth/checkToken",
   async function () {
-    const token = localStorage.getItem("token");
     const response = await apiCall.get(endpoints.testAuth);
     return response.data;
   }
@@ -40,7 +39,7 @@ const authSlice = createSlice({
   initialState: {
     status: null,
     error: null,
-    loggedIn: true,
+    loggedIn: false,
   },
   reducers: {
     checkAuthentication(state, action) {
@@ -59,7 +58,7 @@ const authSlice = createSlice({
     [login.fulfilled]: (state, action) => {
       state.status = "resolved";
       state.loggedIn = true;
-      localStorage.setItem("token", action.payload.message.token);
+      localStorage.setItem("token", action.payload.message.accessToken);
     },
     [login.rejected]: (state, action) => {
       state.status = "rejected";
@@ -73,7 +72,6 @@ const authSlice = createSlice({
       if (action.payload.status === "ok") {
         state.status = "resolved";
         state.loggedIn = true;
-        localStorage.setItem("token", action.payload.message);
       } else {
         state.error = action.payload.message;
       }

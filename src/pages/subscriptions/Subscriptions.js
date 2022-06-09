@@ -1,52 +1,36 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { ReactComponent as Notifications } from "assets/Notifications.svg";
 import CrmTemplate from "components/crmTemplate/CrmTemplate";
 import PopupSubsicriptions from "components/ui/popupSubsicriptions/PopupSubsicriptions";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchPartners } from "store/partnerSlice";
+import { changePage, changeSearchTerm, changeSortField, changeSortDiection, changeLimit } from "store/filterSlice";
 export default function Subscriptions() {
+  const dispatch = useDispatch()
+  const { shops, numberOfPages } = useSelector((state) => state.partners);
+
+  const { limit, page, sort_field, sort_direction, searchTerm } = useSelector((state) => state.filters);
   const headers = [
-    { title: "ID", dataIndex: "_id", width: "204px", sorted: false },
+    { title: "ID", dataIndex: "displayID", width: "204px", sorted: false },
     {
       title: "Название организации",
-      dataIndex: "name",
+      dataIndex: "shopName",
       width: "282px",
       sorted: false,
     },
-    { title: "Магазин", dataIndex: "shop", width: "280px", sorted: false },
+    { title: "Магазин", dataIndex: "name", width: "280px", sorted: false },
     {
       title: "Подписка",
-      dataIndex: "subscription",
+      dataIndex: "currentSub",
       width: "280px",
       sorted: true,
     },
-    { title: "Статус", dataIndex: "status", width: "282px", sorted: true },
+    { title: "Статус", dataIndex: "visible", width: "282px", sorted: true },
     {
       title: "Информация",
       dataIndex: "information",
       width: "235px",
       sorted: false,
-    },
-  ];
-  const data = [
-    {
-      _id: "00000234",
-      name: "ООО “Продукты”",
-      shop: "Лента",
-      subscription: "Золотая",
-      status: "Неактивно",
-    },
-    {
-      _id: "00000235",
-      name: "ООО “Продукты”",
-      shop: "Лента",
-      subscription: "Золотая",
-      status: "Неактивно",
-    },
-    {
-      _id: "00000236",
-      name: "ООО “Продукты”",
-      shop: "Лента",
-      subscription: "Золотая",
-      status: "Неактивно",
     },
   ];
   const props = {
@@ -58,11 +42,22 @@ export default function Subscriptions() {
   const placeholder = "Поиск по магазину...";
   const componentProps = {
     headers,
-    data,
+    data:shops,
     props,
     placeholder,
     PopupSubsicriptions: <PopupSubsicriptions />,
   };
-
+  useEffect(() => {
+    return () => {
+      dispatch(changePage(0));
+      dispatch(changeSearchTerm(""));
+      dispatch(changeSortField("createdAt"));
+      dispatch(changeSortDiection("asc"));
+      dispatch(changeLimit("10"));
+    };
+  }, []);
+  useEffect(() => {
+    dispatch(fetchPartners({ limit, page, sort_direction, sort_field, searchTerm }));
+  }, [limit, page, sort_direction, sort_field, searchTerm]);
   return <CrmTemplate componentProps={componentProps} />;
 }

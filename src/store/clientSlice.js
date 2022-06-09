@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { apiCall } from "../api/apiConfig";
 import { endpoints } from "../api/endpoints";
+import { cleanCache } from "helpers/cleanCache";
 export const fetchClients = createAsyncThunk(
   "clients/fetchClients",
   async function ({ page, sort_field, sort_direction, limit, searchTerm }, { rejectWithValue }) {
@@ -10,6 +11,7 @@ export const fetchClients = createAsyncThunk(
       limit: limit,
       sort_field: sort_field,
       sort_direction: sort_direction,
+      userRole: "client"
     };
     try {
       const response = await apiCall.get(endpoints.getclients, {
@@ -29,7 +31,7 @@ export const fetchClient = createAsyncThunk("clients/fetchClient", async functio
 
 export const deleteClient = createAsyncThunk("clients/deleteClient", async function (id) {
   const response = await apiCall.get(endpoints.deleteClient(id));
-  console.log(response);
+  cleanCache()
   return response.data.status === "ok" ? id : response.data.message;
 });
 
@@ -50,6 +52,7 @@ const clientSlice = createSlice({
     client: {},
     status: null,
     error: null,
+    numberOfPages: 0,
   },
   extraReducers: {
     [fetchClients.pending]: (state, action) => {
@@ -58,7 +61,7 @@ const clientSlice = createSlice({
     },
     [fetchClients.fulfilled]: (state, action) => {
       state.status = "resolved";
-      state.clients = action.payload.clients;
+      state.clients = action.payload.users;
       state.numberOfPages = action.payload.total_pages;
     },
     [fetchClients.rejected]: (state, action) => {

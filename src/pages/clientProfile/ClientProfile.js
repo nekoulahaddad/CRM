@@ -17,6 +17,7 @@ import { changePage, changeSortField, changeSortDiection, changeLimit } from "st
 import { getOrdersByClientId } from "store/orderSlice";
 export default function ClientProfile() {
   const { page, sort_field, sort_direction } = useSelector((state) => state.filters);
+  const limit = 5
   const { orders, numberOfPages } = useSelector((state) => state.orders);
   const dispatch = useDispatch();
   let navigate = useNavigate();
@@ -41,7 +42,7 @@ export default function ClientProfile() {
     },
     {
       title: "Доставка",
-      dataIndex: "delivery_time",
+      dataIndex: "deliveredAt",
       width: "171px",
       sorted: false,
       address:"Москва, бауманская ул",
@@ -78,8 +79,8 @@ export default function ClientProfile() {
   };
   const componentProps = {
     headers,
-    //data: orders
-    data:fakeData,
+    data:orders,
+    //data:fakeData,
     OrderInfo: <OrderInfo />
   };
 
@@ -93,7 +94,7 @@ export default function ClientProfile() {
   }, []);
   useEffect(() => {
     dispatch(fetchClient({ id }));
-    dispatch(getOrdersByClientId({ id }));
+    dispatch(getOrdersByClientId({ page, sort_field, sort_direction, limit, id }));
   }, [page, sort_direction, sort_field, id]);
   return (
     <div className={styles.wrapper}>
@@ -110,9 +111,13 @@ export default function ClientProfile() {
           </div>
           <div className={styles.description}>При неактивном статусе клиент будет заблокирован*</div>
         </div>
+        {orders.length > 0 ? (
+          <React.Fragment>
         <div className={styles.title}>Заказы:</div>
         <Table componentProps={componentProps} />
         <Pagination numberOfPages={numberOfPages} />
+        </React.Fragment>
+        ):null}
       </div>
     </div>
   );
