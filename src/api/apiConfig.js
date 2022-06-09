@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const envBaseUrl = "http://back.zumzak.ru/api";
+const envBaseUrl = "https://back.zumzak.ru/api";
 
 export const apiCall = axios.create({
   withCredentials: true,
