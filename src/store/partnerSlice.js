@@ -19,6 +19,12 @@ export const fetchPartners = createAsyncThunk(
       const response = await apiCall.get(endpoints.getShops, {
         params: myparams,
       });
+      response.data.message.partners.forEach((partner) => {
+        let createdAt = new Date(partner.createdAt)
+        const [month, day, year] = [createdAt.getMonth(), createdAt.getDate(), createdAt.getFullYear()];
+        const [hour, minutes] = [createdAt.getHours(), createdAt.getMinutes()];
+        partner.createdAt = `${day}.${month}.${year}, ${hour}:${minutes}`
+      })
       return response.data.message;
     } catch (err) {
       return rejectWithValue(err.response.data);

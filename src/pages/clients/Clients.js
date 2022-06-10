@@ -27,7 +27,7 @@ export default function Clients() {
     },
     {
       title: "Последний вход",
-      dataIndex: "updatedAt",
+      dataIndex: "createdAt",
       width: "193px",
       sorted: true,
     },

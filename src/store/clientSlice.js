@@ -17,6 +17,12 @@ export const fetchClients = createAsyncThunk(
       const response = await apiCall.get(endpoints.getclients, {
         params: myparams,
       });
+      response.data.message.users.forEach((client) => {
+        let createdAt = new Date(client.createdAt)
+        const [month, day, year] = [createdAt.getMonth(), createdAt.getDate(), createdAt.getFullYear()];
+        const [hour, minutes] = [createdAt.getHours(), createdAt.getMinutes()];
+        client.createdAt = `${day}.${month}.${year}, ${hour}:${minutes}`
+      })
       return response.data.message;
     } catch (err) {
       return rejectWithValue(err.response.data);

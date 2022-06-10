@@ -16,6 +16,14 @@ export const getOrdersByClientId = createAsyncThunk(
         params: myparams,
       });
       const filteredData = response.data.message.orders.map((order) => {
+        let createdAt = new Date(order.createdAt)
+        const [month, day, year] = [createdAt.getMonth(), createdAt.getDate(), createdAt.getFullYear()];
+        const [hour, minutes] = [createdAt.getHours(), createdAt.getMinutes()];
+        order.createdAt = `${day}.${month}.${year}, ${hour}:${minutes}`
+        let deliveredAt = new Date(order.deliveredAt)
+        const [d_month, d_day, d_year] = [deliveredAt.getMonth(), deliveredAt.getDate(), deliveredAt.getFullYear()];
+        const [d_hour, d_minutes] = [deliveredAt.getHours(), deliveredAt.getMinutes()];
+        order.deliveredAt = `${d_day}.${d_month}.${d_year}, ${d_hour}:${d_minutes}`
         const quantityAll = order.products.reduce((prev,curr,i,arr) => {
           return prev + parseInt(curr.quantity) 
         },0)
@@ -50,6 +58,10 @@ export const getOrders = createAsyncThunk(
         params: myparams,
       });
       const filteredData = response.data.message.orders.map((order) => {
+        let createdAt = new Date(order.createdAt)
+        const [month, day, year] = [createdAt.getMonth(), createdAt.getDate(), createdAt.getFullYear()];
+        const [hour, minutes] = [createdAt.getHours(), createdAt.getMinutes()];
+        order.createdAt = `${day}.${month}.${year}, ${hour}:${minutes}`
         return {
           ...order,
           shopName: order.shop.name,
